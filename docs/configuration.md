@@ -1,62 +1,70 @@
 # Configuration
 
-You can change most of the template without touching any components. There are three places to look:
+You can change most of your site without touching any components. There are three places to look:
 
-| File                     | Controls                                                                             |
-| ------------------------ | ------------------------------------------------------------------------------------ |
-| `src/lib/site/config.ts` | Site title, pages and navbar, navbar icon, accent colour, hero, latest posts, footer |
-| `src/lib/blog/config.ts` | Blog URL and folder, image folders, date locale, code highlighting                   |
-| `vite.config.ts`         | Advanced Markdown options (layout, file extensions)                                  |
+| File              | Controls                                                                                                |
+| ----------------- | ------------------------------------------------------------------------------------------------------- |
+| `melan.config.ts` | Site title, pages and navbar, navbar icon, accent colour, latest posts, footer, and the blog's settings |
+| `vite.config.ts`  | The post layout and the site's base path                                                                |
+| Your own files    | The homepage and its hero, the About page and the site layout: ordinary Svelte files in `src/`          |
 
 Fonts and theme colours are set in CSS rather than config. See [Customising the look](customising.md).
 
 ## How editing the config works
 
-1. **Open the file and change a value.** Save, and the dev server updates the page straight away. The `assets` and `highlight` options in the blog config are the exception: restart the dev server after changing those.
-2. **Let your editor help.** The config files are TypeScript, so typing inside an object lists the options it accepts, and hovering an option shows what it does.
-3. **Switch optional sections off by deleting them.** `accent`, `brand`, `latestPosts`, `footer`, and the hero's `definition`, `eyebrow`, `actions` and `highlights` can all be removed. That part of the site then disappears or falls back to a sensible default.
+1. **Open `melan.config.ts` and change a value.** Save, and the dev server restarts and the page updates.
+2. **Let your editor help.** The config is TypeScript, so typing inside an object lists the options it accepts, and hovering an option shows what it does.
+3. **Switch optional sections off by deleting them.** `homeImage`, `routes`, `accent`, `brand`, `latestPosts`, `footer` and everything in `blog` can be removed. That part of the site then disappears or falls back to a sensible default.
 4. **Run `pnpm check`** when you're done. It catches mistakes such as a typo in an option name, a navbar entry pointing at a page that doesn't exist, or an icon file that isn't in `static/`.
 
-Here's the shape of the whole site config, as a map of what's where:
+Here's the shape of the whole config, as a map of what's where:
 
 ```ts
-export const siteConfig: SiteConfig = {
-	title: 'Melan', // browser tabs, share cards, and the navbar when it shows text
-	description: 'A reusable Svelte blog template…', // the homepage's meta description
-	homeImage: 'img/share.png', // optional: the homepage's share image, from static/
-	routes: [
-		// the navbar pages, in order
-		{ href: '/', label: 'Home', nav: false },
-		{ href: '/about', label: 'About' },
-		{ href: blogConfig.path, label: 'Blog' }
-	],
-	accent: { light: 'oklch(0.3994 0.156 210.49)', dark: 'oklch(0.5024 0.3472 217.91)' },
-	brand: { display: 'icon', icon: 'icon.svg' }, // the left side of the navbar
-	hero: {
-		// the big intro on the homepage
+import { defineConfig } from 'melan/config';
+
+export default defineConfig({
+	site: {
+		title: 'Melan', // browser tabs, share cards, and the navbar when it shows text
+		description: 'A reusable Svelte blog template…', // the homepage's meta description
+		homeImage: 'img/share.png', // optional: the homepage's share image, from static/
+		routes: [
+			// the navbar pages, in order
+			{ href: '/', label: 'Home', nav: false },
+			{ href: '/about', label: 'About' },
+			{ href: '/blog', label: 'Blog' }
+		],
+		accent: { light: 'oklch(0.3994 0.156 210.49)', dark: 'oklch(0.5024 0.3472 217.91)' },
+		brand: { display: 'icon', icon: 'icon.svg' }, // the left side of the navbar
+		latestPosts: { heading: 'Latest Posts', count: 6 },
+		footer: { text: '© {year} {title}', links: [], poweredBy: true }
 	},
-	latestPosts: { heading: 'Latest Posts', count: 6 },
-	footer: { text: '© {year} {title}', links: [], poweredBy: true }
-};
+	blog: {
+		locale: 'en-AU', // how dates are written
+		path: '/blog' // the blog's URL and folder
+		// …and image folders, code highlighting and CodePen embeds
+	}
+});
 ```
 
 Each part is explained below.
 
+> **Where's the hero?** The big intro on the homepage isn't part of the config: it's your own component, in `src/lib/components/Hero.svelte`. See [The homepage hero](#the-homepage-hero).
+
 ---
 
-## Site config: `src/lib/site/config.ts`
+## Site: `site`
 
-### `title`, `description` and `image`
+### `title`, `description` and `homeImage`
 
 ```ts
 title: 'Melan',
 description: 'A reusable Svelte blog template…',
-image: 'img/share.png',
+homeImage: 'img/share.png',
 ```
 
 - **`title`** appears in every browser tab (`Post title · Melan`) and is used as `og:site_name`. It's also the navbar text when [`brand`](#brand-the-navbar-icon-and-title) is set to show text.
 - **`description`** is the meta description for the homepage. Posts use their own `description`.
-- **`image`** is the homepage's share image (`og:image`), the picture shown when the link is posted on social media or in chat apps. It's a file in `static/`, so `img/share.png` means `static/img/share.png`; 1200×630 suits most sites. Leave it out for no image. Posts use their own `ogimage` or `cover`.
+- **`homeImage`** is the homepage's share image (`og:image`), the picture shown when the link is posted on social media or in chat apps. It's a file in `static/`, so `img/share.png` means `static/img/share.png`; 1200×630 suits most sites. Leave it out for no image. Posts use their own `ogimage` or `cover`.
 
 ### Pages and the navbar
 
@@ -66,7 +74,7 @@ image: 'img/share.png',
 routes: [
 	{ href: '/', label: 'Home', nav: false },
 	{ href: '/about', label: 'About' },
-	{ href: blogConfig.path, label: 'Blog' }
+	{ href: '/blog', label: 'Blog' }
 ],
 ```
 
@@ -77,7 +85,7 @@ routes: [
 | `enabled` | `true`   | `false` makes the page (and everything under it) return a 404 and hides every link to it.                                    |
 | `nav`     | `true`   | `false` keeps the page working but leaves it out of the navbar.                                                              |
 
-The **order of the list is the navbar order**. The blog's entry uses `blogConfig.path` rather than `'/blog'`, so it follows the blog if you [rename it](#renaming-the-blog).
+The **order of the list is the navbar order**. Leave `routes` out entirely and you get a hidden Home entry and a Blog entry at [`blog.path`](#blog-blog).
 
 #### Common recipes
 
@@ -96,7 +104,7 @@ The **order of the list is the navbar order**. The blog's entry uses `blogConfig
 **Switch the whole blog off.** The index and every post return a 404. The homepage's latest posts, and any hero button pointing at the blog, disappear too.
 
 ```ts
-{ href: blogConfig.path, label: 'Blog', enabled: false }
+{ href: '/blog', label: 'Blog', enabled: false }
 ```
 
 **Put Blog before About:** move its line above About's in the list.
@@ -178,43 +186,52 @@ Delete `accent` and these details use the normal text colour.
 
 > In your own components, the accent is available as the Tailwind colour `ink`: `text-ink`, `border-ink`, `decoration-ink` and so on. It's called `ink` because shadcn-svelte already uses `accent` for hover backgrounds.
 
-### `hero`
+### The homepage hero
 
-The large intro section at the top of the homepage.
+The large intro at the top of the homepage is an example component that comes with your site, in **`src/lib/components/Hero.svelte`**. It isn't part of the `melan` package, so updating Melan never changes it, and you can edit it, replace it or delete it. The homepage, `src/routes/+page.svelte`, passes it its content:
 
-```ts
-hero: {
-	eyebrow: 'Svelte blog template',
-	heading: 'Melan',
-	definition: {
+```svelte
+<Hero
+	eyebrow="Svelte blog template"
+	definition={{
 		pronunciation: '/mɛˈlɑn/',
 		partOfSpeech: 'noun',
 		meaning: 'ink',
 		origin: { language: 'Western Armenian', word: 'մելան', lang: 'hy' }
-	},
-	summary: 'A reusable blog template for SvelteKit…',
-	actions: [
+	}}
+	summary="A reusable blog template for SvelteKit…"
+	actions={[
 		{ label: 'Read the blog', href: blogConfig.path },
 		{ label: 'SvelteKit docs', href: 'https://svelte.dev/docs/kit', variant: 'outline' }
-	],
-	highlights: ['SvelteKit', 'Shiki', 'shadcn-svelte', 'mdsvex', 'Tailwind CSS']
-},
+	]}
+	highlights={['SvelteKit', 'Shiki', 'shadcn-svelte', 'mdsvex', 'Tailwind CSS']}
+/>
 ```
 
-| Option       | Required | What it does                                                     |
-| ------------ | -------- | ---------------------------------------------------------------- |
-| `heading`    | yes      | The big heading.                                                 |
-| `summary`    | yes      | The paragraph under it.                                          |
-| `definition` | no       | A one-line, dictionary-style entry under the heading. See below. |
-| `eyebrow`    | no       | A small badge under the heading.                                 |
-| `actions`    | no       | Buttons. `href` can be a path or a full URL.                     |
-| `highlights` | no       | A "Built with" row of badges. Leave it out to hide the row.      |
+| Prop         | Default              | What it does                                                     |
+| ------------ | -------------------- | ---------------------------------------------------------------- |
+| `heading`    | `site.title`         | The big heading.                                                 |
+| `summary`    | `site.description`   | The paragraph under it.                                          |
+| `definition` |                      | A one-line, dictionary-style entry under the heading. See below. |
+| `eyebrow`    |                      | A small badge under the heading.                                 |
+| `actions`    | A button to the blog | Buttons. `href` can be a path or a full URL.                     |
+| `highlights` |                      | A "Built with" row of badges. Leave it out to hide the row.      |
+
+The defaults come from your config. The hero imports `siteConfig` and `blogConfig` from `melan`, with every default already filled in, and any of your own components can do the same:
+
+```svelte
+<script lang="ts">
+	import { blogConfig, getRoute, siteConfig } from 'melan';
+</script>
+
+<p>{siteConfig.title} posts live at {blogConfig.path}, under "{getRoute(blogConfig.path)?.label}".</p>
+```
 
 Each action takes `variant: 'default'` (filled, with an arrow on internal links) or `variant: 'outline'`. Buttons that link to another website open in a new tab and show a small external-link icon. An action that points at a page switched off in `routes` is hidden automatically.
 
 #### `definition`
 
-Explains the heading the way a dictionary would. With the defaults it reads:
+Explains the heading the way a dictionary would. In the example it reads:
 
 > /mɛˈlɑn/ · _noun_ · ink · from Western Armenian **մելան**
 
@@ -227,11 +244,11 @@ Explains the heading the way a dictionary would. With the defaults it reads:
 | `origin.word`     | no       | The word in its own script.                                                                                                                                         |
 | `origin.lang`     | no       | The [language code](https://www.w3.org/International/questions/qa-choosing-language-tags) for `origin.word`, e.g. `'hy'` for Armenian. Helps screen readers say it. |
 
-Leave out an optional part and its separator dot goes with it. Delete `definition` to remove the line.
+Leave out an optional part and its separator dot goes with it. Leave out `definition` to remove the line.
 
 ### `latestPosts`
 
-A grid of the newest posts under the hero, with a "View all posts" button.
+A grid of the newest posts on the homepage, with a "View all posts" button.
 
 ```ts
 latestPosts: { heading: 'Latest Posts', count: 6 },
@@ -260,7 +277,7 @@ footer: {
 | `links`     | `[]`    | Links shown in the footer, each with a `label` and an `href`.                                            |
 | `poweredBy` | `true`  | Shows a small "Powered by Melan" credit. Set to `false` to remove it.                                    |
 
-`href` works like it does for the hero actions: it can be a path or a full URL. Full URLs (`https://…`, `mailto:…`) open in a new tab, links to other websites get a small external-link icon, and links to a page switched off in `routes` are hidden.
+`href` works like it does for the [hero](#the-homepage-hero)'s actions: it can be a path or a full URL. Full URLs (`https://…`, `mailto:…`) open in a new tab, links to other websites get a small external-link icon, and links to a page switched off in `routes` are hidden.
 
 ```ts
 footer: {
@@ -280,10 +297,12 @@ Delete the whole `footer` block to remove the footer entirely.
 
 ---
 
-## Blog config: `src/lib/blog/config.ts`
+## Blog: `blog`
+
+Everything here is optional; these are the defaults.
 
 ```ts
-export const blogConfig: BlogConfig = {
+blog: {
 	locale: 'en-AU',
 	path: '/blog',
 	assets: {
@@ -298,7 +317,7 @@ export const blogConfig: BlogConfig = {
 		height: 400,
 		tabs: 'result'
 	}
-};
+}
 ```
 
 | Option             | Default         | What it does                                                                                                           |
@@ -312,25 +331,23 @@ export const blogConfig: BlogConfig = {
 | `codepen.height`   | `400`           | Height in pixels of [embedded pens](writing-posts.md#codepen-embeds).                                                  |
 | `codepen.tabs`     | `'result'`      | Tabs a pen opens on, e.g. `'result'`, or `'html,result'` to show the HTML beside the result.                           |
 
-> **Restart the dev server** after changing `assets` or `highlight`. They're read once at startup by the Markdown preprocessor.
-
 ### Renaming the blog
 
 The blog's URL comes from its folder in `src/routes`, so moving the blog means renaming the folder **and** updating `path` to match. For example, to serve posts from `/writing`:
 
 1. Rename `src/routes/blog` to `src/routes/writing`.
-2. Set `path: '/writing'` in `src/lib/blog/config.ts`.
-3. Optionally change the navbar label in `src/lib/site/config.ts`. The `routes` entry uses `blogConfig.path` already, so only the `label` needs changing, and the blog index uses that label as its heading:
+2. Set `path: '/writing'` in `blog` in `melan.config.ts`.
+3. Update the blog's entry in `site.routes` to match. The blog index uses its `label` as its heading:
 
    ```ts
-   { href: blogConfig.path, label: 'Writing' }
+   { href: '/writing', label: 'Writing' }
    ```
 
 Every link then follows the new path: the navbar, blog index, post cards, tag filters, previous/next links, the homepage's latest posts, and the hero button.
 
 The blog can live deeper too, e.g. `src/routes/notes/blog` with `path: '/notes/blog'`.
 
-> If the folder and `path` don't match, `pnpm check` and your editor report a type error on `path`, so a missed step can't reach production unnoticed. Stop the dev server before renaming the folder; Windows won't rename a folder that's in use.
+> If the folder doesn't match `path` or the `routes` entry, `pnpm check` and your editor report a type error, so a missed step can't reach production unnoticed. Stop the dev server before renaming the folder; Windows won't rename a folder that's in use.
 
 ### Image folders
 
@@ -377,26 +394,23 @@ highlight: {
 
 ---
 
-## Markdown options: `vite.config.ts`
+## Build options: `vite.config.ts`
 
-`blogPreprocess()` sets up mdsvex for the blog. You can pass it options:
+`vite.config.ts` loads `melan.config.ts` and hands it to Melan twice: `melan(config)` gives the components the config and finds your posts, and `melanPreprocess(config, …)` turns `.md` files into pages.
 
 ```ts
-blogPreprocess({
-	// Use your own layout component for every .md file
-	layout: fileURLToPath(new URL('./src/lib/components/MyLayout.svelte', import.meta.url)),
-	// Treat other extensions as Markdown too (also add them to `extensions` above)
-	extensions: ['.md', '.svx'],
-	// Override part of blogConfig.highlight or blogConfig.assets just for this build
-	highlight: { themes: { light: 'min-light', dark: 'min-dark' } },
-	assets: { covers: '/cover' }
+melanPreprocess(config, {
+	// The site's base path; see "Serving from a sub-path" in getting-started.md
+	base,
+	// The layout wrapped around every post. Delete this line to use Melan's built-in one.
+	layout: 'src/lib/components/PostLayout.svelte'
 });
 ```
 
-You won't need any of these for normal use. Restart the dev server after changing them.
+`layout` is a path from the project root. See [The post layout](customising.md#the-post-layout). Restart the dev server after changing these options.
 
 ---
 
 ## Frontmatter
 
-Each post's settings live in the frontmatter at the top of its `.md` file. Every field is listed in [Writing posts](writing-posts.md#frontmatter), and also in `src/lib/blog/types.ts`.
+Each post's settings live in the frontmatter at the top of its `.md` file. Every field is listed in [Writing posts](writing-posts.md#frontmatter), and your editor shows them on the `PostFrontmatter` type, which you can import from `melan`.

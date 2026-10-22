@@ -1,0 +1,2 @@
+/* KaTeX's styles for maths in posts. Melan's post layout imports this; a custom one should too. */
+@import 'katex/dist/katex.min.css';
