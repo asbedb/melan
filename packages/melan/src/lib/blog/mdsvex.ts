@@ -2,7 +2,6 @@
 import { fileURLToPath } from 'node:url';
 import { mdsvex, escapeSvelte } from 'mdsvex';
 import remarkMath from 'remark-math';
-import { createHighlighter } from 'shiki';
 import type { PreprocessorGroup } from 'svelte/compiler';
 import { remarkAssetPaths } from './assets.ts';
 import { remarkCodePen } from './codepen.ts';
@@ -10,6 +9,7 @@ import type { BlogConfig } from '../config/index.ts';
 import { CODE_BLOCK_CLASS } from './code-block.ts';
 import { remarkExternalLinks } from './external-links.ts';
 import { remarkHeadings } from './headings.ts';
+import { highlightCode, loadHighlighters } from './highlight.ts';
 import { remarkKatex } from './math.ts';
 import { remarkReadingTime } from './reading-time.ts';
 
@@ -25,13 +25,12 @@ const defaultLayout = fileURLToPath(
 	new URL('../components/blog/BlogLayout.svelte', import.meta.url)
 );
 
-/** mdsvex preprocessor with Shiki highlighting, KaTeX maths and CodePen embeds, wired to the blog layout. */
+/** mdsvex preprocessor with Twinkleplop highlighting, KaTeX maths and CodePen embeds, wired to the blog layout. */
 export function blogPreprocess(
 	blog: BlogConfig,
 	options: BlogPreprocessOptions = {}
 ): PreprocessorGroup {
-	const { themes, langs } = blog.highlight;
-	const highlighter = createHighlighter({ themes: Object.values(themes), langs });
+	const highlighters = loadHighlighters(blog.highlight.langs);
 
 	return mdsvex({
 		extensions: options.extensions ?? ['.md'],
@@ -47,10 +46,7 @@ export function blogPreprocess(
 		],
 		highlight: {
 			highlighter: async (code, lang) => {
-				const hl = await highlighter;
-				const loaded = hl.getLoadedLanguages() as string[];
-				const language = lang && loaded.includes(lang) ? lang : 'text';
-				const html = escapeSvelte(hl.codeToHtml(code, { lang: language, themes }));
+				const html = escapeSvelte(highlightCode(await highlighters, code, lang));
 				return `{@html \`<div class="${CODE_BLOCK_CLASS} group relative">${html}</div>\`}`;
 			}
 		}

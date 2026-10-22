@@ -86,8 +86,10 @@
 	}
 }
 
-.dark .shiki,
-.dark .shiki span {
-	color: var(--shiki-dark) !important;
-	background-color: var(--shiki-dark-bg) !important;
+/* Code blocks (highlighted in blog/highlight.ts) take their colours from the Twinkleplop theme
+   imported in melan.css, which switches to its dark palette under the same .dark class as the
+   rest of the site. */
+.blog-prose pre.twinkleplop {
+	background-color: var(--twp-background, var(--muted));
+	color: var(--twp-identifier, var(--foreground));
 }

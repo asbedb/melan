@@ -13,6 +13,9 @@
 @import '@fontsource-variable/source-serif-4/opsz.css';
 @import '@fontsource-variable/source-serif-4/opsz-italic.css';
 @import './blog.css';
+/* Colours for code blocks in posts. To use another theme, install it (e.g.
+   @twinkleplop/theme-catppuccin) and import it in your own stylesheet after this one. */
+@import '@twinkleplop/theme-github';
 
 /* Melan's components use Tailwind classes, so Tailwind has to look through them too. */
 @source '../';

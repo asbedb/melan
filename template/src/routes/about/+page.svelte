@@ -96,7 +96,7 @@ description: 'Notes on things I build.',`
 			title: 'The blog',
 			option: 'blog',
 			file: 'melan.config.ts',
-			body: 'Date format, the blog’s URL, where images are looked up, and code highlighting themes and languages.',
+			body: 'Date format, the blog’s URL, where images are looked up, and which languages code is highlighted in.',
 			example: `locale: 'en-AU',
 path: '/blog',
 assets: { covers: '/img/covers', images: '/img' },`

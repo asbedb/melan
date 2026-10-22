@@ -204,7 +204,7 @@ The large intro at the top of the homepage is an example component that comes wi
 		{ label: 'Read the blog', href: blogConfig.path },
 		{ label: 'SvelteKit docs', href: 'https://svelte.dev/docs/kit', variant: 'outline' }
 	]}
-	highlights={['SvelteKit', 'Shiki', 'shadcn-svelte', 'mdsvex', 'Tailwind CSS']}
+	highlights={['SvelteKit', 'Twinkleplop', 'shadcn-svelte', 'mdsvex', 'Tailwind CSS']}
 />
 ```
 
@@ -310,7 +310,6 @@ blog: {
 		images: '/img'
 	},
 	highlight: {
-		themes: { light: 'github-light', dark: 'github-dark' },
 		langs: ['ts', 'js', 'svelte', 'html', 'css', 'json', 'bash', 'md', 'yaml']
 	},
 	codepen: {
@@ -320,16 +319,15 @@ blog: {
 }
 ```
 
-| Option             | Default         | What it does                                                                                                           |
-| ------------------ | --------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `locale`           | `'en-AU'`       | How dates are written, e.g. `'en-AU'` gives "22 October 2026", `'en-US'` gives "October 22, 2026".                     |
-| `path`             | `'/blog'`       | The blog's URL **and** its folder under `src/routes`. See [Renaming the blog](#renaming-the-blog).                     |
-| `assets.covers`    | `'/img/covers'` | Folder under `static/` for cover images. See [Image folders](#image-folders).                                          |
-| `assets.images`    | `'/img'`        | Folder under `static/` for images inside posts.                                                                        |
-| `highlight.themes` |                 | The Shiki themes for light and dark mode. Any [bundled Shiki theme](https://shiki.style/themes) name works.            |
-| `highlight.langs`  |                 | Languages to highlight. Other languages are shown as plain text. See [Shiki languages](https://shiki.style/languages). |
-| `codepen.height`   | `400`           | Height in pixels of [embedded pens](writing-posts.md#codepen-embeds).                                                  |
-| `codepen.tabs`     | `'result'`      | Tabs a pen opens on, e.g. `'result'`, or `'html,result'` to show the HTML beside the result.                           |
+| Option            | Default         | What it does                                                                                                  |
+| ----------------- | --------------- | ------------------------------------------------------------------------------------------------------------- |
+| `locale`          | `'en-AU'`       | How dates are written, e.g. `'en-AU'` gives "22 October 2026", `'en-US'` gives "October 22, 2026".            |
+| `path`            | `'/blog'`       | The blog's URL **and** its folder under `src/routes`. See [Renaming the blog](#renaming-the-blog).            |
+| `assets.covers`   | `'/img/covers'` | Folder under `static/` for cover images. See [Image folders](#image-folders).                                 |
+| `assets.images`   | `'/img'`        | Folder under `static/` for images inside posts.                                                               |
+| `highlight.langs` |                 | Languages to highlight. Other languages are shown as plain text. See [Code highlighting](#code-highlighting). |
+| `codepen.height`  | `400`           | Height in pixels of [embedded pens](writing-posts.md#codepen-embeds).                                         |
+| `codepen.tabs`    | `'result'`      | Tabs a pen opens on, e.g. `'result'`, or `'html,result'` to show the HTML beside the result.                  |
 
 ### Renaming the blog
 
@@ -383,14 +381,33 @@ Moving the files is up to you: the config only changes where bare filenames are 
 
 ### Code highlighting
 
-For example, to switch to a different theme and add Python and Rust:
+Code blocks are highlighted by [Twinkleplop](https://twinkleplop.pngwn.at) when the site is built, so no highlighting code is sent to readers.
+
+**Languages.** Each language is its own package. Melan includes `ts`, `js`, `svelte`, `html`, `css`, `json`, `bash`, `md` and `yaml`. To add another, install its package and list it. For example, for Python and Rust:
+
+```sh
+pnpm add -D @twinkleplop/python @twinkleplop/rust
+```
 
 ```ts
 highlight: {
-	themes: { light: 'catppuccin-latte', dark: 'catppuccin-mocha' },
-	langs: ['ts', 'js', 'svelte', 'html', 'css', 'json', 'bash', 'md', 'yaml', 'python', 'rust']
+	langs: ['ts', 'js', 'svelte', 'html', 'css', 'json', 'bash', 'md', 'yaml', 'python', 'rust'];
 }
 ```
+
+The usual short names work after the ` ``` ` too: `ts`, `js`, `md`, `sh`, `yml`, `py` and `rs`. If a listed language has no package installed, the build prints a warning and its code blocks are shown as plain text.
+
+**Colours.** The colours come from a Twinkleplop theme, a stylesheet with a light and a dark palette that follows the site's light/dark toggle. Melan uses the GitHub theme. To use another, such as [Catppuccin](https://twinkleplop.pngwn.at/docs/themes-ref), install it and import it in `src/routes/layout.css`, straight after the `@asbedb/melan/styles.css` line:
+
+```sh
+pnpm add -D @twinkleplop/theme-catppuccin
+```
+
+```css
+@import '@twinkleplop/theme-catppuccin';
+```
+
+The other themes are `atom-one`, `solarized`, `night-owl`, `rose-pine`, `ayu` and `material`. To change a single colour, set its variable in your stylesheet, e.g. `.twinkleplop { --twp-keyword: rebeccapurple; }`.
 
 ---
 

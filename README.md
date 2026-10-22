@@ -1,11 +1,11 @@
 # Melan
 
-A reusable blog template for SvelteKit. You write posts in Markdown and get Shiki syntax highlighting, a table of contents, and links to the previous and next posts. It's built on accessible shadcn-svelte components, with light and dark mode.
+A reusable blog template for SvelteKit. You write posts in Markdown and get syntax highlighting, a table of contents, and links to the previous and next posts. It's built on accessible shadcn-svelte components, with light and dark mode.
 
 ## Features
 
 - **Markdown posts.** Add a `+page.md` file under `src/routes/blog` and it's published. Frontmatter sets the title, date, cover, tags and more.
-- **Syntax highlighting.** Shiki highlights code blocks for both light and dark mode, and each block has a copy button.
+- **Syntax highlighting.** [Twinkleplop](https://twinkleplop.pngwn.at) highlights code blocks when the site is built, for both light and dark mode, and each block has a copy button.
 - **Maths.** Write TeX between `$` or `$$` and KaTeX renders it when the site is built, with no JavaScript needed to read it.
 - **CodePen embeds.** Paste a pen's link on a line of its own and it becomes an embed that follows light and dark mode.
 - **"On this page" contents.** A sticky sidebar lists the post's headings and highlights the section you're reading. On phones it folds into a menu.
@@ -89,7 +89,7 @@ Everything else (the navbar, footer, post cards, contents list, Markdown pipelin
 
 ## Built with
 
-[SvelteKit](https://svelte.dev/docs/kit) · [mdsvex](https://mdsvex.pngwn.io) · [Shiki](https://shiki.style) · [KaTeX](https://katex.org) · [shadcn-svelte](https://shadcn-svelte.com) · [Tailwind CSS](https://tailwindcss.com)
+[SvelteKit](https://svelte.dev/docs/kit) · [mdsvex](https://mdsvex.pngwn.io) · [Twinkleplop](https://twinkleplop.pngwn.at) · [KaTeX](https://katex.org) · [shadcn-svelte](https://shadcn-svelte.com) · [Tailwind CSS](https://tailwindcss.com)
 
 ## Contributing
 
