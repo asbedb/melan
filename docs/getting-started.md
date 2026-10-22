@@ -1,14 +1,18 @@
 # Getting started
 
-This guide takes you from a fresh copy of the template to a site that's running and has your own name on it.
+This guide takes you from nothing to a site that's running and has your own name on it.
 
-## 1. Install
+## 1. Create your blog
 
-You need [Node.js](https://nodejs.org) (a current LTS release) and [pnpm](https://pnpm.io). This project uses pnpm, so use it rather than npm or yarn.
+You need [Node.js](https://nodejs.org) (a current LTS release). These guides use [pnpm](https://pnpm.io), but npm, yarn and bun work too.
 
 ```sh
+pnpm create melan my-blog
+cd my-blog
 pnpm install
 ```
+
+`my-blog` is the folder to create. You get a small SvelteKit project: your config, your posts and pages, and the `melan` package, which holds the components and the Markdown pipeline.
 
 ## 2. Run the dev server
 
@@ -20,27 +24,27 @@ Open <http://localhost:5173>. The page reloads as you save files. In dev mode, p
 
 ## 3. Make it yours
 
-Most of the site is set from one file: **`src/lib/site/config.ts`**. Open it and change these first:
+Most of the site is set from one file: **`melan.config.ts`**. Open it and change these first:
 
 ```ts
-export const siteConfig: SiteConfig = {
-	title: 'My Blog', // browser tab, share cards
-	description: 'Notes on things I build.', // default search/share description
-	routes: [
-		{ href: '/', label: 'Home', nav: false },
-		{ href: '/about', label: 'About' },
-		{ href: blogConfig.path, label: 'Blog' }
-	],
-	accent: { light: '#2563eb', dark: '#60a5fa' }, // titles, link underlines and other details
-	brand: { display: 'icon-title', icon: 'icon.svg' }, // left side of the navbar
-	hero: {
-		heading: 'My Blog',
-		summary: 'A short paragraph about you and what you write about.',
-		actions: [{ label: 'Read the blog', href: blogConfig.path }]
+export default defineConfig({
+	site: {
+		title: 'My Blog', // browser tab, share cards
+		description: 'Notes on things I build.', // default search/share description
+		routes: [
+			{ href: '/', label: 'Home', nav: false },
+			{ href: '/about', label: 'About' },
+			{ href: '/blog', label: 'Blog' }
+		],
+		accent: { light: '#2563eb', dark: '#60a5fa' }, // titles, link underlines and other details
+		brand: { display: 'icon-title', icon: 'icon.svg' }, // left side of the navbar
+		latestPosts: { heading: 'Latest Posts', count: 6 },
+		footer: { text: '© {year} {title}', poweredBy: true }
 	},
-	latestPosts: { heading: 'Latest Posts', count: 6 },
-	footer: { text: '© {year} {title}', poweredBy: true }
-};
+	blog: {
+		locale: 'en-AU' // how dates are written
+	}
+});
 ```
 
 Save the file and the site updates. Your editor lists the options as you type and explains each one on hover, and anything optional can be deleted to switch it off. [Configuration](configuration.md) explains every option.
@@ -48,9 +52,9 @@ Save the file and the site updates. Your editor lists the options as you type an
 Then:
 
 - **Add your icon.** Replace `static/icon.svg` with your own single-colour icon. It's drawn in the text colour, so it works in light and dark mode. To show your name instead, set `brand: { display: 'title' }`. See [`brand`](configuration.md#brand-the-navbar-icon-and-title).
-- **Change or remove the hero's dictionary line.** It explains the name "Melan"; edit `hero.definition` or delete it. See [`definition`](configuration.md#definition).
-- **Set the date format.** Change `locale` in `src/lib/blog/config.ts`, e.g. `'en-US'` or `'de-DE'`.
-- **Choose your blog URL and image folders (optional).** The blog lives at `/blog`, covers in `static/img/covers/` and post images in `static/img/`. All three can be changed in `src/lib/blog/config.ts`. See [Renaming the blog](configuration.md#renaming-the-blog) and [Image folders](configuration.md#image-folders).
+- **Rewrite the homepage hero.** Its text is in `src/routes/+page.svelte`, and the component itself is `src/lib/components/Hero.svelte`. The dictionary line explains the name "Melan"; change `definition` or delete it. See [The homepage hero](configuration.md#the-homepage-hero).
+- **Set the date format.** Change `blog.locale`, e.g. `'en-US'` or `'de-DE'`.
+- **Choose your blog URL and image folders (optional).** The blog lives at `/blog`, covers in `static/img/covers/` and post images in `static/img/`. All three can be changed in `blog`. See [Renaming the blog](configuration.md#renaming-the-blog) and [Image folders](configuration.md#image-folders).
 - **Edit the About page.** It's in `src/routes/about/+page.svelte`. You can also switch it off: see [Pages and the navbar](configuration.md#pages-and-the-navbar).
 - **Replace the sample posts.** They're the folders in `src/routes/blog/`.
 
@@ -105,7 +109,7 @@ Melan uses [`@sveltejs/adapter-auto`](https://svelte.dev/docs/kit/adapter-auto),
 - AWS via [SST](https://sst.dev)
 - [Google Cloud Run](https://cloud.google.com/run)
 
-Push your copy of the template to GitHub (or GitLab, or Bitbucket), import the repository on your host, and use these settings if it asks:
+Push your project to GitHub (or GitLab, or Bitbucket), import the repository on your host, and use these settings if it asks:
 
 | Setting         | Value                                                                                                       |
 | --------------- | ----------------------------------------------------------------------------------------------------------- |
@@ -159,4 +163,14 @@ Links, the navbar icon, and images in posts (covers and inline images) all get t
 
 - [Configuration](configuration.md): every config option
 - [Writing posts](writing-posts.md): frontmatter, contents, images and code
-- [Customising the look](customising.md): pages, colours, fonts and components
+- [Customising the look](customising.md): pages, colours, fonts, layouts and components
+
+## Updating Melan
+
+The components, Markdown pipeline and styles come from the `melan` package, so fixes and new features arrive with an update:
+
+```sh
+pnpm update melan
+```
+
+Your posts, pages, config and layouts are your own files, so an update never overwrites them. Check [the changelog](https://github.com/asbedb/melan/blob/main/packages/melan/CHANGELOG.md) before a major version (e.g. 1.x to 2.x): it lists anything you need to change, and `pnpm check` points at config options that have moved.

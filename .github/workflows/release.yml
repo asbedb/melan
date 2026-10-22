@@ -1,0 +1,39 @@
+name: Release
+
+# On every push to main, Changesets either opens (or updates) a "Version packages" pull request
+# from the pending changesets, or, once that pull request is merged, publishes to npm.
+on:
+  push:
+    branches: [main]
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: write # push the version commit and tags
+  pull-requests: write # open the "Version packages" pull request
+  id-token: write # npm trusted publishing, with provenance
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+      - run: pnpm install --frozen-lockfile
+      - uses: changesets/action@v1
+        with:
+          version: pnpm run version-packages
+          publish: pnpm run release
+          title: 'chore: version packages'
+          commit: 'chore: version packages'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+          # Publishing uses npm trusted publishing (set up on npmjs.com for each package), so no
+          # token is needed. Without it, add an npm automation token as the NPM_TOKEN secret:
+          # NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

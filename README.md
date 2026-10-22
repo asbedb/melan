@@ -13,7 +13,8 @@ A reusable blog template for SvelteKit. You write posts in Markdown and get Shik
 - **Blog index.** Posts are listed newest first, and readers can filter them by tag. Reading time is worked out automatically.
 - **Shareable headings.** Every heading in a post has a `#` link that scrolls smoothly to it and puts the section's address in the address bar.
 - **Clear external links.** Links to other websites open in a new tab and get a small icon.
-- **Config, not code.** The site title, pages and navbar, navbar icon, accent colour, homepage hero and footer live in `src/lib/site/config.ts`. The blog's URL and folder, the image folders and code highlighting live in `src/lib/blog/config.ts`. See [Configuration](docs/configuration.md).
+- **Config, not code.** The site title, pages and navbar, navbar icon, accent colour, footer, blog URL, image folders and code highlighting all live in `melan.config.ts`. See [Configuration](docs/configuration.md).
+- **Updates without merges.** The components and Markdown pipeline come from the `melan` package, so `pnpm update melan` brings fixes and features while your posts, pages and layouts stay yours.
 - **Optional footer.** A copyright line, links and a "Powered by Melan" credit, all set from the config.
 - **SEO basics.** Each post gets a page title, description, Open Graph tags and a canonical URL. Drafts are marked `noindex`.
 - **Navbar icon.** Show an icon, the icon and title, or just the title, with a different choice for the homepage if you like. The icon follows light and dark mode.
@@ -22,16 +23,18 @@ A reusable blog template for SvelteKit. You write posts in Markdown and get Shik
 
 ## Quick start
 
-You need [Node.js](https://nodejs.org) and [pnpm](https://pnpm.io).
+You need [Node.js](https://nodejs.org). The docs use [pnpm](https://pnpm.io), but npm, yarn and bun work too.
 
 ```sh
+pnpm create melan my-blog
+cd my-blog
 pnpm install
 pnpm dev
 ```
 
-Then open <http://localhost:5173>.
+Then open <http://localhost:5173> and edit `melan.config.ts`.
 
-To deploy, push your copy to GitHub and import it on Vercel, Netlify or Cloudflare Pages with `pnpm build` as the build command. There's nothing else to configure. For other hosts, see [Build and deploy](docs/getting-started.md#6-build-and-deploy).
+To deploy, push your project to GitHub and import it on Vercel, Netlify or Cloudflare Pages with `pnpm build` as the build command. There's nothing else to configure. For other hosts, see [Build and deploy](docs/getting-started.md#6-build-and-deploy).
 
 ## Documentation
 
@@ -42,25 +45,27 @@ To deploy, push your copy to GitHub and import it on Vercel, Netlify or Cloudfla
 | [Writing posts](docs/writing-posts.md)      | Frontmatter, headings, images, code blocks and drafts          |
 | [Customising the look](docs/customising.md) | Pages, colours, fonts, text size and components                |
 
-## Where things live
+## Where things live in your blog
 
 ```
+melan.config.ts               ← site title, pages, navbar, accent, footer, blog URL, images, code
+vite.config.ts                ← the post layout and base path
 src/
-├── lib/
-│   ├── site/config.ts        ← site title, pages, navbar icon, accent, hero and footer
-│   ├── blog/config.ts        ← blog URL, image folders, date locale and code highlighting
-│   ├── blog/types.ts         ← every frontmatter field a post accepts
-│   ├── styles/blog.css       ← how post content is styled
-│   └── components/           ← blog, site, theme and shadcn-svelte ui components
+├── lib/components/
+│   ├── Hero.svelte           ← the homepage hero: yours to edit or delete
+│   └── PostLayout.svelte     ← the layout around every post
 ├── routes/
+│   ├── +layout.svelte        ← navbar, page and footer: rearrange as you like
 │   ├── +page.svelte          ← homepage
 │   ├── about/+page.svelte    ← an example custom page
 │   ├── blog/                 ← the blog index and one folder per post
-│   └── layout.css            ← theme colours (and your custom theme), fonts and radius
+│   └── layout.css            ← your colours, fonts and other overrides
 static/                       ← images and other files served as-is
-├── icon.svg                  ← the navbar icon (set in site/config.ts)
-└── img/covers/               ← cover images (folders set in blog/config.ts)
+├── icon.svg                  ← the navbar icon
+└── img/covers/               ← cover images
 ```
+
+Everything else (the navbar, footer, post cards, contents list, Markdown pipeline and base styles) comes from the [`melan`](packages/melan) package.
 
 ## Scripts
 
@@ -72,6 +77,15 @@ static/                       ← images and other files served as-is
 | `pnpm check`   | Type-check the project, including the route config |
 | `pnpm lint`    | Check formatting and lint                          |
 | `pnpm format`  | Format every file with Prettier                    |
+
+## This repository
+
+| Folder                                           | What it is                                                        |
+| ------------------------------------------------ | ----------------------------------------------------------------- |
+| [`packages/melan`](packages/melan)               | The `melan` npm package: components, Markdown pipeline and styles |
+| [`packages/create-melan`](packages/create-melan) | `pnpm create melan`, which copies the template into a new folder  |
+| [`template`](template)                           | The starter blog, and the demo site Melan is developed against    |
+| [`docs`](docs)                                   | The guides linked above                                           |
 
 ## Built with
 

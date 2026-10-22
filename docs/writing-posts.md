@@ -68,7 +68,7 @@ Every `##` (h2) and `###` (h3) heading is listed in the "On this page" contents.
 
 ## Images
 
-Image files live in `static/`. Give a **bare filename** and it's looked up in the folder set in `src/lib/blog/config.ts`:
+Image files live in `static/`. Give a **bare filename** and it's looked up in the folder set in `blog.assets` in `melan.config.ts`:
 
 | Image                   | Default folder       | Write                       | Becomes                    |
 | ----------------------- | -------------------- | --------------------------- | -------------------------- |
@@ -101,7 +101,7 @@ export function add(a: number, b: number) {
 ```
 ````
 
-Code is highlighted for light and dark mode and gets a copy button. Languages not listed in `highlight.langs` in `src/lib/blog/config.ts` are shown as plain text; see [Configuration](configuration.md#blog-config-srclibblogconfigts) to add more.
+Code is highlighted for light and dark mode and gets a copy button. Languages not listed in `blog.highlight.langs` in `melan.config.ts` are shown as plain text; see [Code highlighting](configuration.md#code-highlighting) to add more.
 
 Wrap short snippets in single backticks, like `` `npm run build` ``, to show them as inline code.
 

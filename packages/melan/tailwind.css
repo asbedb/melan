@@ -1,0 +1,3 @@
+/* Only for prettier-plugin-tailwindcss, which sorts classes using this stylesheet. */
+@import 'tailwindcss';
+@import './src/lib/styles/melan.css';
