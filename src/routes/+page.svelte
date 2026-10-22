@@ -13,6 +13,7 @@
 	<title>{siteConfig.title}</title>
 	<meta name="description" content={siteConfig.description} />
 	<meta property="og:title" content={siteConfig.title} />
+	<meta property="og:sitename" content={siteConfig.title} />
 	<meta property="og:description" content={siteConfig.description} />
 	<meta property="og:type" content="website" />
 	{#if siteConfig.homeImage}
