@@ -1,0 +1,22 @@
+<script lang="ts">
+	import { Hero } from '#lib/components/site/index.ts';
+	import { LatestPosts } from '#lib/components/blog/index.ts';
+	import { siteConfig } from '#lib/site/config.ts';
+	import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
+</script>
+
+<svelte:head>
+	<title>{siteConfig.title}</title>
+	<meta name="description" content={siteConfig.description} />
+	<meta property="og:title" content={siteConfig.title} />
+	<meta property="og:description" content={siteConfig.description} />
+	<meta property="og:type" content="website" />
+</svelte:head>
+
+<Hero {...siteConfig.hero} />
+
+{#if siteConfig.latestPosts}
+	<LatestPosts heading={siteConfig.latestPosts.heading} posts={data.latestPosts} />
+{/if}

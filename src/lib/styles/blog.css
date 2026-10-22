@@ -1,0 +1,83 @@
+/* Blog post styles. Imported from routes/layout.css so @apply shares its Tailwind context. */
+
+.blog-prose {
+	@apply prose prose-lg max-w-none;
+	/* Post colours come from the theme variables in routes/layout.css rather than one of Tailwind
+	   Typography's fixed palettes, so a custom theme (and dark mode) reaches post text too. */
+	--tw-prose-body: color-mix(in oklab, var(--foreground) 85%, var(--background));
+	--tw-prose-headings: var(--foreground);
+	--tw-prose-lead: var(--muted-foreground);
+	--tw-prose-links: var(--primary);
+	--tw-prose-bold: var(--foreground);
+	--tw-prose-counters: var(--muted-foreground);
+	--tw-prose-bullets: var(--muted-foreground);
+	--tw-prose-hr: var(--border);
+	--tw-prose-quotes: var(--foreground);
+	--tw-prose-quote-borders: var(--color-ink);
+	--tw-prose-captions: var(--muted-foreground);
+	--tw-prose-kbd: var(--foreground);
+	--tw-prose-kbd-shadows: var(--foreground);
+	--tw-prose-code: var(--foreground);
+	--tw-prose-pre-code: var(--foreground);
+	--tw-prose-pre-bg: var(--muted);
+	--tw-prose-th-borders: var(--border);
+	--tw-prose-td-borders: var(--border);
+	/* Source Serif is variable, so body text can sit a touch heavier than regular for easier reading. */
+	@apply font-[450];
+	@apply prose-headings:scroll-m-20 prose-headings:font-heading prose-headings:leading-tight prose-headings:font-semibold;
+	@apply prose-h2:mt-14 prose-h2:mb-5 prose-h3:mt-10 prose-h3:mb-4 prose-h4:mt-8 prose-h4:mb-3;
+	@apply prose-a:text-primary prose-a:decoration-ink prose-a:underline-offset-4;
+	@apply prose-code:font-mono prose-code:font-normal prose-code:before:content-none prose-code:after:content-none;
+	@apply prose-pre:my-0 prose-pre:rounded-lg prose-pre:border prose-pre:py-3.5 prose-pre:pr-14 prose-pre:pl-4 prose-pre:text-sm prose-pre:leading-relaxed;
+	@apply prose-img:mx-auto prose-img:rounded-lg;
+	/* Long URLs and identifiers would otherwise push the page wider than a phone screen. */
+	@apply wrap-break-word;
+
+	/* Wide tables scroll inside themselves instead of scrolling the whole page. */
+	& table {
+		@apply block w-max max-w-full overflow-x-auto;
+	}
+
+	/* The `#` link after each heading (added in blog/headings.ts). On devices with a mouse it
+	   appears when the heading is hovered; on touch screens it's always shown. */
+	& .heading-anchor {
+		@apply ms-[0.3em] font-normal text-muted-foreground no-underline transition-[color,opacity] hover:text-ink focus-visible:text-ink;
+	}
+
+	@media (hover: hover) {
+		& .heading-anchor {
+			@apply opacity-0 focus-visible:opacity-100;
+		}
+
+		& :is(h1, h2, h3, h4, h5, h6):hover .heading-anchor {
+			@apply opacity-100;
+		}
+	}
+
+	/* Links to other sites (marked in blog/external-links.ts) get Lucide's external-link icon,
+	   drawn in the link colour. As an inline-block it isn't underlined with the text. */
+	& a.external-link::after {
+		content: '';
+		display: inline-block;
+		width: 0.7em;
+		height: 0.7em;
+		margin-inline-start: 0.2em;
+		background-color: currentColor;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E")
+			center / contain no-repeat;
+	}
+
+	& .code-block {
+		@apply my-6;
+	}
+
+	& :not(pre) > code {
+		@apply rounded bg-muted px-1.5 py-0.5 text-[0.875em];
+	}
+}
+
+.dark .shiki,
+.dark .shiki span {
+	color: var(--shiki-dark) !important;
+	background-color: var(--shiki-dark-bg) !important;
+}
