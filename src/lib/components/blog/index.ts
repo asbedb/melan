@@ -3,6 +3,7 @@ export { default as PostHead } from './PostHead.svelte';
 export { default as PostHeader } from './PostHeader.svelte';
 export { default as PostCover } from './PostCover.svelte';
 export { default as CodeCopyButton } from './CodeCopyButton.svelte';
+export { default as CodePen } from './CodePen.svelte';
 export { default as PostMeta } from './PostMeta.svelte';
 export { default as PostCard } from './PostCard.svelte';
 export { default as LatestPosts } from './LatestPosts.svelte';

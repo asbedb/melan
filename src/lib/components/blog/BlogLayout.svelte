@@ -2,6 +2,8 @@
 	import type { Snippet } from 'svelte';
 	import { page } from '$app/state';
 	import { Separator } from '#lib/components/ui/separator/index.ts';
+	import 'katex/dist/katex.min.css';
+	import { codePenEmbeds } from '#lib/blog/codepen-embeds.ts';
 	import { copyButtons } from '#lib/blog/copy-buttons.ts';
 	import { headingLinks } from '#lib/blog/heading-links.ts';
 	import { getShareImage, getSummary, normalizeTags } from '#lib/blog/frontmatter.ts';
@@ -63,6 +65,7 @@
 
 		<div
 			{@attach copyButtons}
+			{@attach codePenEmbeds}
 			{@attach headingLinks}
 			class="blog-prose lg:col-start-1 lg:row-start-1"
 		>
