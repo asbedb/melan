@@ -1,6 +1,6 @@
 # melan
 
-The engine behind [Melan](https://github.com/asbedb/melan), a Markdown blog for SvelteKit: the components, the Markdown pipeline (Shiki highlighting, KaTeX maths, CodePen embeds, heading links and reading time) and the base styles, all set up from one `melan.config.ts`.
+The engine behind [Melan](https://github.com/asbedb/melan), a Markdown blog for SvelteKit: the components, the Markdown pipeline (Twinkleplop highlighting, KaTeX maths, CodePen embeds, heading links and reading time) and the base styles, all set up from one `melan.config.ts`.
 
 ## Start a new blog
 

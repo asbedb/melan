@@ -117,9 +117,12 @@ export interface BlogConfig {
 		images: string;
 	};
 	highlight: {
-		/** Shiki theme names for light and dark mode. */
-		themes: { light: string; dark: string };
-		/** Languages to highlight; anything else is shown as plain text. */
+		/**
+		 * Languages to highlight; anything else is shown as plain text. Each one is a Twinkleplop
+		 * package, e.g. `'python'` for `@twinkleplop/python`. Melan includes the defaults; install
+		 * any others with `pnpm add -D @twinkleplop/<name>`. Colours come from a Twinkleplop theme
+		 * stylesheet: see "Code highlighting" in the configuration guide.
+		 */
 		langs: string[];
 	};
 	/** Pens embedded from a CodePen link on a line of its own. */
@@ -158,7 +161,6 @@ export const defaultBlogConfig: BlogConfig = {
 		images: '/img'
 	},
 	highlight: {
-		themes: { light: 'github-light', dark: 'github-dark' },
 		langs: ['ts', 'js', 'svelte', 'html', 'css', 'json', 'bash', 'md', 'yaml']
 	},
 	codepen: {

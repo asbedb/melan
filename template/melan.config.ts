@@ -6,7 +6,7 @@ export default defineConfig({
 	site: {
 		title: 'Melan',
 		description:
-			'Melan is a reusable Svelte blog template with Shiki syntax highlighting and shadcn-svelte components.',
+			'Melan is a reusable Svelte blog template with syntax highlighting and shadcn-svelte components.',
 		homeImage: 'img/home-share.png',
 		routes: [
 			{ href: '/', label: 'Home', nav: false },
@@ -37,7 +37,6 @@ export default defineConfig({
 			images: '/img'
 		},
 		highlight: {
-			themes: { light: 'github-light', dark: 'github-dark' },
 			langs: ['ts', 'js', 'svelte', 'html', 'css', 'json', 'bash', 'md', 'yaml']
 		},
 		codepen: {

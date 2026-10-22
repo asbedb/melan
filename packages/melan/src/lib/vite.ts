@@ -49,7 +49,7 @@ export interface MelanPreprocessOptions {
 }
 
 /**
- * Svelte preprocessor that turns `.md` files into pages, with Shiki highlighting, KaTeX maths,
+ * Svelte preprocessor that turns `.md` files into pages, with Twinkleplop highlighting, KaTeX maths,
  * CodePen embeds and the post layout. Add `.md` to the SvelteKit `extensions` alongside it.
  */
 export function melanPreprocess(

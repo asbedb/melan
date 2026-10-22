@@ -33,12 +33,12 @@
 		meaning: 'ink',
 		origin: { language: 'Western Armenian', word: 'մելան', lang: 'hy' }
 	}}
-	summary="A reusable blog template for SvelteKit. Write posts in Markdown, get Shiki syntax highlighting out of the box, and build on accessible shadcn-svelte components with light and dark mode."
+	summary="A reusable blog template for SvelteKit. Write posts in Markdown, get syntax highlighting out of the box, and build on accessible shadcn-svelte components with light and dark mode."
 	actions={[
 		{ label: 'Read the blog', href: blogConfig.path },
 		{ label: 'SvelteKit docs', href: 'https://svelte.dev/docs/kit', variant: 'outline' }
 	]}
-	highlights={['SvelteKit', 'Shiki', 'shadcn-svelte', 'mdsvex', 'Tailwind CSS']}
+	highlights={['SvelteKit', 'Twinkleplop', 'shadcn-svelte', 'mdsvex', 'Tailwind CSS']}
 />
 
 {#if siteConfig.latestPosts}
