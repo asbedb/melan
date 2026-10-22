@@ -119,6 +119,11 @@ export interface SiteConfig {
 	title: string;
 	/** Default meta description, used on pages that don't set their own. */
 	description: string;
+	/**
+	 * Home page share image, file in `static/`, e.g. `img/share.png` for `static/img/share.png`.
+	 * 1200×630 suits most sites. Leave out for no image.
+	 */
+	homeImage?: AssetPath;
 	routes: SiteRoute[];
 	/** Leave out to use the text colour. */
 	accent?: AccentConfig;
@@ -135,6 +140,7 @@ export const siteConfig: SiteConfig = {
 	title: 'Melan',
 	description:
 		'Melan is a reusable Svelte blog template with Shiki syntax highlighting and shadcn-svelte components.',
+	homeImage: `img/home-share.png`,
 	routes: [
 		{ href: '/', label: 'Home', nav: false },
 		{ href: '/about', label: 'About' },

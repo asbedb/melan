@@ -23,6 +23,7 @@ Here's the shape of the whole site config, as a map of what's where:
 export const siteConfig: SiteConfig = {
 	title: 'Melan', // browser tabs, share cards, and the navbar when it shows text
 	description: 'A reusable Svelte blog template…', // the homepage's meta description
+	image: 'img/share.png', // optional: the homepage's share image, from static/
 	routes: [
 		// the navbar pages, in order
 		{ href: '/', label: 'Home', nav: false },
@@ -45,15 +46,17 @@ Each part is explained below.
 
 ## Site config: `src/lib/site/config.ts`
 
-### `title` and `description`
+### `title`, `description` and `image`
 
 ```ts
 title: 'Melan',
 description: 'A reusable Svelte blog template…',
+image: 'img/share.png',
 ```
 
 - **`title`** appears in every browser tab (`Post title · Melan`) and is used as `og:site_name`. It's also the navbar text when [`brand`](#brand-the-navbar-icon-and-title) is set to show text.
 - **`description`** is the meta description for the homepage. Posts use their own `description`.
+- **`image`** is the homepage's share image (`og:image`), the picture shown when the link is posted on social media or in chat apps. It's a file in `static/`, so `img/share.png` means `static/img/share.png`; 1200×630 suits most sites. Leave it out for no image. Posts use their own `ogimage` or `cover`.
 
 ### Pages and the navbar
 
