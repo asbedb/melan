@@ -26,14 +26,32 @@ jobs:
           registry-url: https://registry.npmjs.org
       - run: pnpm install --frozen-lockfile
       - uses: changesets/action@v1
+        id: changesets
         with:
           version: pnpm run version-packages
           publish: pnpm run release
           title: 'chore: version packages'
           commit: 'chore: version packages'
+          # Done in the next step instead: the action only makes releases when it recognises
+          # changeset publish's output, which it doesn't for Changesets v3.
+          createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
           # Publishing uses npm trusted publishing (set up on npmjs.com for each package), so no
           # token is needed. Without it, add an npm automation token as the NPM_TOKEN secret:
           # NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # After a publish, push the tags changeset publish made (one per published package, on this
+      # commit) and give each a GitHub release with its changelog entry. Tags and releases that
+      # already exist are left alone, so this is safe to re-run.
+      - name: Push tags and create GitHub releases
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        run: |
+          git push origin --tags
+          for tag in $(git tag --points-at HEAD); do
+            if gh release view "$tag" > /dev/null 2>&1; then continue; fi
+            node scripts/release-notes.ts "$tag" > notes.md
+            gh release create "$tag" --title "$tag" --notes-file notes.md --verify-tag
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
