@@ -2,7 +2,7 @@ import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import { melan, melanPreprocess } from 'melan/vite';
+import { melan, melanPreprocess } from '@asbedb/melan/vite';
 import { defineConfig } from 'vite';
 import config from './melan.config.ts';
 

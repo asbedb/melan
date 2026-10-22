@@ -6,8 +6,8 @@
 	import PaletteIcon from '@lucide/svelte/icons/palette';
 	import SettingsIcon from '@lucide/svelte/icons/settings';
 	import { resolve } from '$app/paths';
-	import { blogConfig, getRoute, isRouteEnabled, siteConfig } from 'melan';
-	import { Button, Separator } from 'melan/ui';
+	import { blogConfig, getRoute, isRouteEnabled, siteConfig } from '@asbedb/melan';
+	import { Button, Separator } from '@asbedb/melan/ui';
 
 	const title = getRoute('/about')?.label ?? 'About';
 	const description = `What ${siteConfig.title} is and how it's put together.`;

@@ -11,7 +11,7 @@
 		PageLoader,
 		SiteHead,
 		siteConfig
-	} from 'melan';
+	} from '@asbedb/melan';
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();

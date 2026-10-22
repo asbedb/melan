@@ -12,7 +12,7 @@ cd my-blog
 pnpm install
 ```
 
-`my-blog` is the folder to create. You get a small SvelteKit project: your config, your posts and pages, and the `melan` package, which holds the components and the Markdown pipeline.
+`my-blog` is the folder to create. You get a small SvelteKit project: your config, your posts and pages, and the `@asbedb/melan` package, which holds the components and the Markdown pipeline.
 
 ## 2. Run the dev server
 
@@ -167,10 +167,10 @@ Links, the navbar icon, and images in posts (covers and inline images) all get t
 
 ## Updating Melan
 
-The components, Markdown pipeline and styles come from the `melan` package, so fixes and new features arrive with an update:
+The components, Markdown pipeline and styles come from the `@asbedb/melan` package, so fixes and new features arrive with an update:
 
 ```sh
-pnpm update melan
+pnpm update @asbedb/melan
 ```
 
 Your posts, pages, config and layouts are your own files, so an update never overwrites them. Check [the changelog](https://github.com/asbedb/melan/blob/main/packages/melan/CHANGELOG.md) before a major version (e.g. 1.x to 2.x): it lists anything you need to change, and `pnpm check` points at config options that have moved.

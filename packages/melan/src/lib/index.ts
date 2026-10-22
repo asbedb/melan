@@ -1,4 +1,4 @@
-// Public API of Melan. Build-time pieces live in `melan/vite` and `melan/config`.
+// Public API of Melan. Build-time pieces live in `@asbedb/melan/vite` and `@asbedb/melan/config`.
 export * from './components/blog/index.ts';
 export * from './components/theme/index.ts';
 export * from './components/site/index.ts';

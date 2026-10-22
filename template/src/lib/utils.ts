@@ -6,4 +6,4 @@ export {
 	type WithoutChild,
 	type WithoutChildren,
 	type WithoutChildrenOrChild
-} from 'melan/ui';
+} from '@asbedb/melan/ui';

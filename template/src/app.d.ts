@@ -1,6 +1,6 @@
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
-import type { AdjacentPosts } from 'melan';
+import type { AdjacentPosts } from '@asbedb/melan';
 
 declare global {
 	namespace App {

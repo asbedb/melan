@@ -20,7 +20,7 @@ Fonts and theme colours are set in CSS rather than config. See [Customising the 
 Here's the shape of the whole config, as a map of what's where:
 
 ```ts
-import { defineConfig } from 'melan/config';
+import { defineConfig } from '@asbedb/melan/config';
 
 export default defineConfig({
 	site: {
@@ -188,7 +188,7 @@ Delete `accent` and these details use the normal text colour.
 
 ### The homepage hero
 
-The large intro at the top of the homepage is an example component that comes with your site, in **`src/lib/components/Hero.svelte`**. It isn't part of the `melan` package, so updating Melan never changes it, and you can edit it, replace it or delete it. The homepage, `src/routes/+page.svelte`, passes it its content:
+The large intro at the top of the homepage is an example component that comes with your site, in **`src/lib/components/Hero.svelte`**. It isn't part of the `@asbedb/melan` package, so updating Melan never changes it, and you can edit it, replace it or delete it. The homepage, `src/routes/+page.svelte`, passes it its content:
 
 ```svelte
 <Hero
@@ -217,11 +217,11 @@ The large intro at the top of the homepage is an example component that comes wi
 | `actions`    | A button to the blog | Buttons. `href` can be a path or a full URL.                     |
 | `highlights` |                      | A "Built with" row of badges. Leave it out to hide the row.      |
 
-The defaults come from your config. The hero imports `siteConfig` and `blogConfig` from `melan`, with every default already filled in, and any of your own components can do the same:
+The defaults come from your config. The hero imports `siteConfig` and `blogConfig` from `@asbedb/melan`, with every default already filled in, and any of your own components can do the same:
 
 ```svelte
 <script lang="ts">
-	import { blogConfig, getRoute, siteConfig } from 'melan';
+	import { blogConfig, getRoute, siteConfig } from '@asbedb/melan';
 </script>
 
 <p>{siteConfig.title} posts live at {blogConfig.path}, under "{getRoute(blogConfig.path)?.label}".</p>
@@ -413,4 +413,4 @@ melanPreprocess(config, {
 
 ## Frontmatter
 
-Each post's settings live in the frontmatter at the top of its `.md` file. Every field is listed in [Writing posts](writing-posts.md#frontmatter), and your editor shows them on the `PostFrontmatter` type, which you can import from `melan`.
+Each post's settings live in the frontmatter at the top of its `.md` file. Every field is listed in [Writing posts](writing-posts.md#frontmatter), and your editor shows them on the `PostFrontmatter` type, which you can import from `@asbedb/melan`.

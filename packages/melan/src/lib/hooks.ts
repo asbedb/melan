@@ -1,4 +1,4 @@
-// The `melan/hooks` entry, for src/hooks.ts.
+// The `@asbedb/melan/hooks` entry, for src/hooks.ts.
 import type { Reroute } from '@sveltejs/kit/hooks';
 import { isRouteEnabled } from './config/runtime.ts';
 

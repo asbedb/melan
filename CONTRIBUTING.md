@@ -18,16 +18,16 @@ pnpm install
 pnpm dev
 ```
 
-`pnpm dev` builds the `melan` package, then rebuilds it whenever you save while running the template site at <http://localhost:5173>.
+`pnpm dev` builds the `@asbedb/melan` package, then rebuilds it whenever you save while running the template site at <http://localhost:5173>.
 
 ### How the repository is laid out
 
-| Folder                  | What it is                                                                                             |
-| ----------------------- | ------------------------------------------------------------------------------------------------------ |
-| `packages/melan`        | The `melan` npm package. Anything every blog should get when it updates goes here.                     |
-| `packages/create-melan` | The `pnpm create melan` CLI. When packed, it bundles a copy of `template/`.                            |
-| `template`              | The starter blog people get, and the site you try your changes on. It uses `melan` from the workspace. |
-| `docs`                  | The user guides.                                                                                       |
+| Folder                  | What it is                                                                                                     |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `packages/melan`        | The `@asbedb/melan` npm package. Anything every blog should get when it updates goes here.                     |
+| `packages/create-melan` | The `pnpm create melan` CLI. When packed, it bundles a copy of `template/`.                                    |
+| `template`              | The starter blog people get, and the site you try your changes on. It uses `@asbedb/melan` from the workspace. |
+| `docs`                  | The user guides.                                                                                               |
 
 Rule of thumb: if a fix should reach existing blogs, it belongs in `packages/melan`. The template only holds what people are expected to make their own: config, posts, pages, the hero and the layouts. Keep it thin.
 
@@ -67,7 +67,7 @@ Pick the packages and the kind of change, and write a sentence or two for the ch
 - **minor:** a new feature or option, with nothing for users to change.
 - **major:** anything users have to act on, such as a renamed config option, a removed export or a change to what the template's files must contain. Say exactly what to change.
 
-Changes to `template/` reach people through `create-melan`, so choose `create-melan` for those. `melan` and `create-melan` are always released together with the same version.
+Changes to `template/` reach people through `create-melan`, so choose `create-melan` for those. `@asbedb/melan` and `create-melan` are always released together with the same version.
 
 ## Code conventions
 
@@ -82,7 +82,7 @@ Changes to `template/` reach people through `create-melan`, so choose `create-me
 
 ### Imports
 
-- In the template, import Melan from `melan`, `melan/ui` and the other entries, and the template's own files with the `#lib/*` alias.
+- In the template, import Melan from `@asbedb/melan`, `@asbedb/melan/ui` and the other entries, and the template's own files with the `#lib/*` alias.
 - In `packages/melan`, use relative imports with `.ts` extensions. svelte-package rewrites them to `.js` when it builds the package.
 - **Files loaded by `vite.config.ts` at build time must not import Svelte components or `$app` modules**: `config/index.ts`, `vite.ts`, and the remark plugins in `blog/` (`mdsvex.ts`, `headings.ts`, `math.ts` and the others). Each starts with a comment saying so. Type-only imports such as `import type { RouteId } from '$app/types'` are fine, since they're removed before the file runs.
 - Components read the site's config from `config/runtime.ts`, which gets it from the Vite plugin as `virtual:melan/config`.
@@ -132,7 +132,7 @@ Explain _why_, not _what_. A short comment on a non-obvious decision helps more 
 
 ## Releasing
 
-Maintainers only. Pushing to `main` runs the release workflow, which opens a "Version packages" pull request whenever there are changesets waiting. Merging that pull request publishes `melan` and `create-melan` to npm and tags the release.
+Maintainers only. Pushing to `main` runs the release workflow, which opens a "Version packages" pull request whenever there are changesets waiting. Merging that pull request publishes `@asbedb/melan` and `create-melan` to npm and tags the release.
 
 The first release has to be published by hand, because npm's trusted publishing can only be set up for packages that already exist:
 
@@ -145,7 +145,7 @@ pnpm release             # builds both packages and publishes them
 git push --follow-tags
 ```
 
-Then, on npmjs.com, add the GitHub repository as a trusted publisher (workflow `release.yml`) for both `melan` and `create-melan`. Later releases go through the workflow.
+Then, on npmjs.com, add the GitHub repository as a trusted publisher (workflow `release.yml`) for both `@asbedb/melan` and `create-melan`. Later releases go through the workflow.
 
 ## Licence
 

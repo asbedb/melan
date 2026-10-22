@@ -8,14 +8,14 @@
 	},
 	"type": "module",
 	"scripts": {
-		"dev": "pnpm --filter melan build && pnpm --parallel --filter melan --filter melan-template dev",
+		"dev": "pnpm --filter @asbedb/melan build && pnpm --parallel --filter @asbedb/melan --filter melan-template dev",
 		"build": "pnpm -r build",
 		"check": "pnpm -r check",
 		"lint": "pnpm -r lint && prettier --check .",
 		"format": "pnpm -r format && prettier --write .",
 		"changeset": "changeset",
 		"version-packages": "changeset version && pnpm install --lockfile-only",
-		"release": "pnpm --filter melan --filter create-melan build && changeset publish"
+		"release": "pnpm --filter @asbedb/melan --filter create-melan build && changeset publish"
 	},
 	"devDependencies": {
 		"@changesets/cli": "^3.0.3",

@@ -2,7 +2,7 @@
    transitions. Import it after Tailwind in your own stylesheet:
 
      @import 'tailwindcss';
-     @import 'melan/styles.css';
+     @import '@asbedb/melan/styles.css';
 
    then override any variable below in your stylesheet. */
 @import 'tw-animate-css';

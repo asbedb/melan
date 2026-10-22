@@ -296,6 +296,9 @@ importers:
 
   template:
     devDependencies:
+      '@asbedb/melan':
+        specifier: workspace:^
+        version: link:../packages/melan
       '@eslint/js':
         specifier: ^10.0.1
         version: 10.0.1(eslint@10.13.0(jiti@2.7.0))
@@ -332,9 +335,6 @@ importers:
       jiti:
         specifier: ^2.7.0
         version: 2.7.0
-      melan:
-        specifier: workspace:^
-        version: link:../packages/melan
       prettier:
         specifier: ^3.9.10
         version: 3.9.10

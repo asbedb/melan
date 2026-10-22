@@ -1,4 +1,4 @@
-import { blogConfig, getPosts, isRouteEnabled, siteConfig } from 'melan';
+import { blogConfig, getPosts, isRouteEnabled, siteConfig } from '@asbedb/melan';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = () => {

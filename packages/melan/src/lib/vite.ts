@@ -1,4 +1,4 @@
-// The `melan/vite` entry, loaded by vite.config.ts at build time — keep imports relative.
+// The `@asbedb/melan/vite` entry, loaded by vite.config.ts at build time — keep imports relative.
 import path from 'node:path';
 import type { PreprocessorGroup } from 'svelte/compiler';
 import type { Plugin } from 'vite';
@@ -22,7 +22,10 @@ export function melan(config: MelanConfig): Plugin {
 		name: 'melan',
 		// The components import the virtual modules above, so they must go through Vite's
 		// pipeline rather than being pre-bundled or left to Node during SSR.
-		config: () => ({ optimizeDeps: { exclude: ['melan'] }, ssr: { noExternal: ['melan'] } }),
+		config: () => ({
+			optimizeDeps: { exclude: ['@asbedb/melan'] },
+			ssr: { noExternal: ['@asbedb/melan'] }
+		}),
 		resolveId(id) {
 			if (id === CONFIG_ID || id === POSTS_ID) return `\0${id}`;
 		},

@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 /* Melan's fonts, colours and post styles. Anything below overrides them. */
-@import 'melan/styles.css';
+@import '@asbedb/melan/styles.css';
 
 /* ─── Custom theme ──────────────────────────────────────────────────────────────────────────
    Override Melan's colours with your own. These blocks come after Melan's styles, so anything

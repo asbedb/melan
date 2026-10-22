@@ -4,8 +4,15 @@
 	import ArrowRightIcon from '@lucide/svelte/icons/arrow-right';
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import { blogConfig, getPosts, isRouteEnabled, LatestPosts, navRoutes, siteConfig } from 'melan';
-	import { Badge, Button, Separator } from 'melan/ui';
+	import {
+		blogConfig,
+		getPosts,
+		isRouteEnabled,
+		LatestPosts,
+		navRoutes,
+		siteConfig
+	} from '@asbedb/melan';
+	import { Badge, Button, Separator } from '@asbedb/melan/ui';
 
 	const notFound = $derived(page.status === 404);
 	const heading = $derived(notFound ? 'Page not found' : 'Something went wrong');

@@ -5,7 +5,7 @@
 	// go back to Melan's built-in layout, which looks the same as this one.
 	import type { Snippet } from 'svelte';
 	import { page } from '$app/state';
-	import 'melan/katex.css';
+	import '@asbedb/melan/katex.css';
 	import {
 		codePenEmbeds,
 		copyButtons,
@@ -19,8 +19,8 @@
 		PostNav,
 		TableOfContents,
 		type PostFrontmatter
-	} from 'melan';
-	import { Separator } from 'melan/ui';
+	} from '@asbedb/melan';
+	import { Separator } from '@asbedb/melan/ui';
 
 	let { children, ...meta }: PostFrontmatter & { children?: Snippet } = $props();
 	const tags = $derived(normalizeTags(meta.tags));

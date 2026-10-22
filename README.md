@@ -14,7 +14,7 @@ A reusable blog template for SvelteKit. You write posts in Markdown and get Shik
 - **Shareable headings.** Every heading in a post has a `#` link that scrolls smoothly to it and puts the section's address in the address bar.
 - **Clear external links.** Links to other websites open in a new tab and get a small icon.
 - **Config, not code.** The site title, pages and navbar, navbar icon, accent colour, footer, blog URL, image folders and code highlighting all live in `melan.config.ts`. See [Configuration](docs/configuration.md).
-- **Updates without merges.** The components and Markdown pipeline come from the `melan` package, so `pnpm update melan` brings fixes and features while your posts, pages and layouts stay yours.
+- **Updates without merges.** The components and Markdown pipeline come from the `@asbedb/melan` package, so `pnpm update @asbedb/melan` brings fixes and features while your posts, pages and layouts stay yours.
 - **Optional footer.** A copyright line, links and a "Powered by Melan" credit, all set from the config.
 - **SEO basics.** Each post gets a page title, description, Open Graph tags and a canonical URL. Drafts are marked `noindex`.
 - **Navbar icon.** Show an icon, the icon and title, or just the title, with a different choice for the homepage if you like. The icon follows light and dark mode.
@@ -65,7 +65,7 @@ static/                       ← images and other files served as-is
 └── img/covers/               ← cover images
 ```
 
-Everything else (the navbar, footer, post cards, contents list, Markdown pipeline and base styles) comes from the [`melan`](packages/melan) package.
+Everything else (the navbar, footer, post cards, contents list, Markdown pipeline and base styles) comes from the [`@asbedb/melan`](packages/melan) package.
 
 ## Scripts
 
@@ -80,12 +80,12 @@ Everything else (the navbar, footer, post cards, contents list, Markdown pipelin
 
 ## This repository
 
-| Folder                                           | What it is                                                        |
-| ------------------------------------------------ | ----------------------------------------------------------------- |
-| [`packages/melan`](packages/melan)               | The `melan` npm package: components, Markdown pipeline and styles |
-| [`packages/create-melan`](packages/create-melan) | `pnpm create melan`, which copies the template into a new folder  |
-| [`template`](template)                           | The starter blog, and the demo site Melan is developed against    |
-| [`docs`](docs)                                   | The guides linked above                                           |
+| Folder                                           | What it is                                                                |
+| ------------------------------------------------ | ------------------------------------------------------------------------- |
+| [`packages/melan`](packages/melan)               | The `@asbedb/melan` npm package: components, Markdown pipeline and styles |
+| [`packages/create-melan`](packages/create-melan) | `pnpm create melan`, which copies the template into a new folder          |
+| [`template`](template)                           | The starter blog, and the demo site Melan is developed against            |
+| [`docs`](docs)                                   | The guides linked above                                                   |
 
 ## Built with
 

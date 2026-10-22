@@ -1,5 +1,5 @@
 {
-	"name": "melan",
+	"name": "@asbedb/melan",
 	"version": "0.1.0",
 	"description": "A Markdown blog for SvelteKit: Shiki highlighting, KaTeX, CodePen embeds and shadcn-svelte components, set up from one config file.",
 	"license": "GPL-3.0-or-later",
@@ -110,5 +110,8 @@
 		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.72.0",
 		"vite": "^8.3.5"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

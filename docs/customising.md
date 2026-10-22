@@ -107,7 +107,7 @@ For example, to use [Lora](https://fontsource.org/fonts/lora) for body text:
    pnpm add -D @fontsource-variable/lora
    ```
 
-2. Import it in `src/routes/layout.css`, straight after the `melan/styles.css` line:
+2. Import it in `src/routes/layout.css`, straight after the `@asbedb/melan/styles.css` line:
 
    ```css
    @import '@fontsource-variable/lora';
@@ -147,11 +147,11 @@ Some other changes that work the same way:
 - **`--tw-prose-bullets: var(--color-ink);`** colours the list bullets with the accent. Each `--tw-prose-…` variable colours one part of posts, and Melan maps them all to the theme variables.
 - **`@apply prose-pre:text-base;`** sets the code block text size, separately from the body text.
 
-Melan's full post styles are in `node_modules/melan/dist/styles/blog.css` if you want to see what's there. See the [Tailwind Typography docs](https://github.com/tailwindlabs/tailwindcss-typography) for every modifier.
+Melan's full post styles are in `node_modules/@asbedb/melan/dist/styles/blog.css` if you want to see what's there. See the [Tailwind Typography docs](https://github.com/tailwindlabs/tailwindcss-typography) for every modifier.
 
 ## Layout and components
 
-Your site is split in two. The pieces most people never need to change, such as the navbar, footer, post cards, contents list and the Markdown pipeline, come from the `melan` package, so they get fixes and new features when you update it. How those pieces are arranged lives in your own files:
+Your site is split in two. The pieces most people never need to change, such as the navbar, footer, post cards, contents list and the Markdown pipeline, come from the `@asbedb/melan` package, so they get fixes and new features when you update it. How those pieces are arranged lives in your own files:
 
 | To change                   | Edit                                   |
 | --------------------------- | -------------------------------------- |
@@ -165,17 +165,17 @@ Your site is split in two. The pieces most people never need to change, such as 
 
 ### The site layout
 
-`src/routes/+layout.svelte` puts the navbar at the top, the page in the middle and the footer at the bottom. Move them, wrap them, or add your own banner or sidebar; the components are imported from `melan`:
+`src/routes/+layout.svelte` puts the navbar at the top, the page in the middle and the footer at the bottom. Move them, wrap them, or add your own banner or sidebar; the components are imported from `@asbedb/melan`:
 
 ```svelte
 <script lang="ts">
-	import { Footer, Navbar, PageLoader, SiteHead, siteConfig } from 'melan';
+	import { Footer, Navbar, PageLoader, SiteHead, siteConfig } from '@asbedb/melan';
 </script>
 ```
 
 ### The post layout
 
-Every post is wrapped in `src/lib/components/PostLayout.svelte`, set as `layout` in `vite.config.ts`. It looks the same as Melan's built-in layout, but it's yours: move the "On this page" contents, drop the cover image, or add a newsletter box under every post. It's built from these pieces, all imported from `melan`:
+Every post is wrapped in `src/lib/components/PostLayout.svelte`, set as `layout` in `vite.config.ts`. It looks the same as Melan's built-in layout, but it's yours: move the "On this page" contents, drop the cover image, or add a newsletter box under every post. It's built from these pieces, all imported from `@asbedb/melan`:
 
 | Piece             | What it shows                                            |
 | ----------------- | -------------------------------------------------------- |
@@ -192,8 +192,8 @@ The `copyButtons`, `codePenEmbeds` and `headingLinks` attachments on the post bo
 For anything CSS can't reach, copy the component into your own project and use your copy instead. For example, to change the navbar:
 
 1. Copy `Navbar.svelte` from [Melan's source](https://github.com/asbedb/melan/tree/main/packages/melan/src/lib/components/site) into `src/lib/components/`.
-2. Change its imports from relative paths to `melan` and `melan/ui`.
-3. In `src/routes/+layout.svelte`, import your `Navbar` from `#lib/components/Navbar.svelte` instead of from `melan`.
+2. Change its imports from relative paths to `@asbedb/melan` and `@asbedb/melan/ui`.
+3. In `src/routes/+layout.svelte`, import your `Navbar` from `#lib/components/Navbar.svelte` instead of from `@asbedb/melan`.
 
 Your copy won't get Melan's updates any more, so only copy what you need to change.
 
@@ -205,7 +205,7 @@ Melan's own pages use a few [shadcn-svelte](https://shadcn-svelte.com/docs/compo
 
 ```svelte
 <script lang="ts">
-	import { Badge, Button, Separator } from 'melan/ui';
+	import { Badge, Button, Separator } from '@asbedb/melan/ui';
 </script>
 ```
 

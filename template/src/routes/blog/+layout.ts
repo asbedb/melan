@@ -1,4 +1,4 @@
-import { getAdjacentPosts, getPostSlug } from 'melan';
+import { getAdjacentPosts, getPostSlug } from '@asbedb/melan';
 import type { LayoutLoad } from './$types';
 
 // Posts are `.md` pages, which can't have their own load function, so the

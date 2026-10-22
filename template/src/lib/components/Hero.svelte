@@ -43,11 +43,18 @@
 
 <script lang="ts">
 	// This component is yours: it isn't part of Melan, so change it or delete it as you like. It
-	// shows how your own components can read the site and blog config from `melan`.
+	// shows how your own components can read the site and blog config from `@asbedb/melan`.
 	import ArrowRightIcon from '@lucide/svelte/icons/arrow-right';
 	import ExternalLinkIcon from '@lucide/svelte/icons/external-link';
-	import { blogConfig, getRoute, isExternal, isOtherSite, isRouteEnabled, siteConfig } from 'melan';
-	import { Badge, Button } from 'melan/ui';
+	import {
+		blogConfig,
+		getRoute,
+		isExternal,
+		isOtherSite,
+		isRouteEnabled,
+		siteConfig
+	} from '@asbedb/melan';
+	import { Badge, Button } from '@asbedb/melan/ui';
 
 	let {
 		eyebrow,

@@ -1,4 +1,4 @@
-import { getPosts, getTags } from 'melan';
+import { getPosts, getTags } from '@asbedb/melan';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = () => {

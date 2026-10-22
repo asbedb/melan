@@ -1,6 +1,6 @@
 // Your site's settings. Every option is explained in Melan's configuration guide:
 // https://github.com/asbedb/melan/blob/main/docs/configuration.md
-import { defineConfig } from 'melan/config';
+import { defineConfig } from '@asbedb/melan/config';
 
 export default defineConfig({
 	site: {

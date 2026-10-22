@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { asset } from '$app/paths';
-	import { blogConfig, LatestPosts, siteConfig } from 'melan';
+	import { blogConfig, LatestPosts, siteConfig } from '@asbedb/melan';
 	import Hero from '#lib/components/Hero.svelte';
 	import type { PageProps } from './$types';
 

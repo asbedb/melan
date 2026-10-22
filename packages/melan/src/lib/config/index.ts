@@ -1,4 +1,4 @@
-// The `melan/config` entry. Loaded by vite.config.ts at build time, so keep imports relative and
+// The `@asbedb/melan/config` entry. Loaded by vite.config.ts at build time, so keep imports relative and
 // type-only: no Svelte components and no `$app` runtime modules.
 import type { AssetPath, RouteId } from '$app/types';
 

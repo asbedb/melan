@@ -25,7 +25,7 @@ Then open <http://localhost:5173>.
 | `pnpm lint`    | Check formatting and lint                          |
 | `pnpm format`  | Format every file with Prettier                    |
 
-To get Melan's latest fixes and features, run `pnpm update melan`.
+To get Melan's latest fixes and features, run `pnpm update @asbedb/melan`.
 
 ## Guides
 
