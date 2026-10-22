@@ -23,7 +23,7 @@ Here's the shape of the whole site config, as a map of what's where:
 export const siteConfig: SiteConfig = {
 	title: 'Melan', // browser tabs, share cards, and the navbar when it shows text
 	description: 'A reusable Svelte blog template…', // the homepage's meta description
-	image: 'img/share.png', // optional: the homepage's share image, from static/
+	homeImage: 'img/share.png', // optional: the homepage's share image, from static/
 	routes: [
 		// the navbar pages, in order
 		{ href: '/', label: 'Home', nav: false },
