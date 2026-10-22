@@ -1,11 +1,14 @@
 // Loaded by vite.config.ts at build time — keep imports relative.
 import { fileURLToPath } from 'node:url';
 import { mdsvex, escapeSvelte } from 'mdsvex';
+import remarkMath from 'remark-math';
 import { createHighlighter } from 'shiki';
 import { remarkAssetPaths } from './assets.ts';
+import { remarkCodePen } from './codepen.ts';
 import { blogConfig, CODE_BLOCK_CLASS, type BlogConfig } from './config.ts';
 import { remarkExternalLinks } from './external-links.ts';
 import { remarkHeadings } from './headings.ts';
+import { remarkKatex } from './math.ts';
 import { remarkReadingTime } from './reading-time.ts';
 
 export interface BlogPreprocessOptions {
@@ -22,7 +25,7 @@ const defaultLayout = fileURLToPath(
 	new URL('../components/blog/BlogLayout.svelte', import.meta.url)
 );
 
-/** mdsvex preprocessor with Shiki highlighting, wired to the blog layout. */
+/** mdsvex preprocessor with Shiki highlighting, KaTeX maths and CodePen embeds, wired to the blog layout. */
 export function blogPreprocess(options: BlogPreprocessOptions = {}) {
 	const { themes, langs } = { ...blogConfig.highlight, ...options.highlight };
 	const highlighter = createHighlighter({ themes: Object.values(themes), langs });
@@ -34,6 +37,9 @@ export function blogPreprocess(options: BlogPreprocessOptions = {}) {
 		remarkPlugins: [
 			remarkReadingTime,
 			remarkHeadings,
+			remarkMath,
+			remarkKatex,
+			remarkCodePen,
 			remarkExternalLinks,
 			[remarkAssetPaths, { ...assets, base: options.base }]
 		],

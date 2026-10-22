@@ -105,6 +105,50 @@ Code is highlighted for light and dark mode and gets a copy button. Languages no
 
 Wrap short snippets in single backticks, like `` `npm run build` ``, to show them as inline code.
 
+## Maths
+
+Equations are written in TeX and rendered with [KaTeX](https://katex.org). Wrap inline maths in single dollar signs, and put display maths on its own lines between double dollar signs:
+
+```md
+The area of a circle is $A = \pi r^2$.
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}
+$$
+```
+
+- Equations are rendered when the site is built, so they appear straight away and don't need any JavaScript in the browser.
+- Wide display equations scroll sideways on small screens rather than stretching the page.
+- If an equation has a mistake, the build prints a warning with the file and line, and the post shows the TeX in red where the equation would be.
+- For a dollar sign that isn't maths, escape it: `\$5`.
+
+See [KaTeX's supported functions](https://katex.org/docs/supported) for what you can write.
+
+## CodePen embeds
+
+Paste a link to a pen on a line of its own and it becomes an embedded, runnable pen:
+
+```md
+Here's the demo:
+
+https://codepen.io/your-name/pen/abcDEF
+```
+
+- Links to a pen's `pen`, `full`, `details` or `embed` view all work, as do team pens (`codepen.io/team/<team>/pen/<id>`).
+- The embed follows the site's light and dark mode and loads only when it's scrolled near.
+- A CodePen link inside a sentence stays a normal link.
+- Without JavaScript, readers get a link to the pen instead.
+
+The height and the tabs a pen opens on are set for every pen with `codepen` in the blog config. See [Configuration](configuration.md#blog-config-srclibblogconfigts). To change them for one pen, use the component instead:
+
+```md
+<script>
+	import { CodePen } from '#lib/components/blog/index.ts';
+</script>
+
+<CodePen user="your-name" pen="abcDEF" height={600} tabs="html,result" title="A CSS loading spinner" />
+```
+
 ## Links
 
 Write links the usual Markdown way: `[the SvelteKit docs](https://svelte.dev/docs/kit)`.

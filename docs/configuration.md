@@ -293,6 +293,10 @@ export const blogConfig: BlogConfig = {
 	highlight: {
 		themes: { light: 'github-light', dark: 'github-dark' },
 		langs: ['ts', 'js', 'svelte', 'html', 'css', 'json', 'bash', 'md', 'yaml']
+	},
+	codepen: {
+		height: 400,
+		tabs: 'result'
 	}
 };
 ```
@@ -305,6 +309,8 @@ export const blogConfig: BlogConfig = {
 | `assets.images`    | `'/img'`        | Folder under `static/` for images inside posts.                                                                        |
 | `highlight.themes` |                 | The Shiki themes for light and dark mode. Any [bundled Shiki theme](https://shiki.style/themes) name works.            |
 | `highlight.langs`  |                 | Languages to highlight. Other languages are shown as plain text. See [Shiki languages](https://shiki.style/languages). |
+| `codepen.height`   | `400`           | Height in pixels of [embedded pens](writing-posts.md#codepen-embeds).                                                  |
+| `codepen.tabs`     | `'result'`      | Tabs a pen opens on, e.g. `'result'`, or `'html,result'` to show the HTML beside the result.                           |
 
 > **Restart the dev server** after changing `assets` or `highlight`. They're read once at startup by the Markdown preprocessor.
 

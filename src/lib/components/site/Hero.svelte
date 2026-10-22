@@ -25,7 +25,7 @@
 		class="absolute inset-0 -z-10 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] mask-[radial-gradient(ellipse_at_center,black_20%,transparent_70%)] bg-size-[3rem_3rem]"
 	></div>
 
-	<div class="mx-auto flex min-h-[calc(80svh-3.5rem)] max-w-6xl flex-col gap-3 px-4 py-32">
+	<div class="mx-auto flex min-h-[calc(80svh-3.5rem)] max-w-6xl flex-col gap-3 px-4 py-8 sm:py-32">
 		<h1 class="text-5xl text-balance wrap-break-word sm:text-7xl lg:text-8xl">
 			{heading}<span class="text-ink">.</span>
 		</h1>

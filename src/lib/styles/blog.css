@@ -71,6 +71,16 @@
 		@apply my-6;
 	}
 
+	/* Display equations (rendered in blog/math.ts) scroll sideways when wider than the column. */
+	& .math-block {
+		@apply my-6 overflow-x-auto overflow-y-hidden;
+	}
+
+	/* CodePen embeds (blog/codepen.ts); the margin keeps the no-JavaScript link spaced too. */
+	& .codepen-embed {
+		@apply my-6;
+	}
+
 	& :not(pre) > code {
 		@apply rounded bg-muted px-1.5 py-0.5 text-[0.875em];
 	}

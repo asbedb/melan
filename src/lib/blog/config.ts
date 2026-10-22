@@ -29,6 +29,13 @@ export interface BlogConfig {
 		/** Languages to highlight; anything else is shown as plain text. */
 		langs: string[];
 	};
+	/** Pens embedded from a CodePen link on a line of its own. */
+	codepen: {
+		/** Height of the embed in pixels. */
+		height: number;
+		/** Tabs the embed opens on, e.g. `'result'` or `'html,result'`. */
+		tabs: string;
+	};
 }
 
 export const blogConfig: BlogConfig = {
@@ -41,5 +48,9 @@ export const blogConfig: BlogConfig = {
 	highlight: {
 		themes: { light: 'github-light', dark: 'github-dark' },
 		langs: ['ts', 'js', 'svelte', 'html', 'css', 'json', 'bash', 'md', 'yaml']
+	},
+	codepen: {
+		height: 400,
+		tabs: 'result'
 	}
 };
