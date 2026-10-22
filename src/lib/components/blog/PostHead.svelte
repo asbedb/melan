@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import { siteConfig } from '#lib/site/config.ts';
 
 	interface Props {
@@ -24,6 +25,8 @@
 		canonical,
 		draft
 	}: Props = $props();
+	const absolute = (href: string) => new URL(href, page.url.origin).href;
+	const url = $derived(absolute(page.url.pathname));
 </script>
 
 <svelte:head>
@@ -32,12 +35,13 @@
 		<meta property="og:title" content={title} />
 	{/if}
 	<meta property="og:site_name" content={siteConfig.title} />
+	<meta property="og:url" content={canonical ?? url} />
 	{#if summary}
 		<meta name="description" content={summary} />
 		<meta property="og:description" content={summary} />
 	{/if}
 	{#if image}
-		<meta property="og:image" content={image} />
+		<meta property="og:image" content={absolute(image)} />
 		<meta name="twitter:card" content="summary_large_image" />
 	{/if}
 	<meta property="og:type" content="article" />
