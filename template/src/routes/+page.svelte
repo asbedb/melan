@@ -26,7 +26,7 @@
 
 <!-- The hero is an example component in src/lib/components: edit it, or delete it from here. -->
 <Hero
-	eyebrow="Svelte blog template"
+	eyebrow="pnpm create melan my-blog"
 	definition={{
 		pronunciation: '/mɛˈlɑn/',
 		partOfSpeech: 'noun',
@@ -35,8 +35,8 @@
 	}}
 	summary="A reusable blog template for SvelteKit. Write posts in Markdown, get syntax highlighting out of the box, and build on accessible shadcn-svelte components with light and dark mode."
 	actions={[
-		{ label: 'Read the blog', href: blogConfig.path },
-		{ label: 'SvelteKit docs', href: 'https://svelte.dev/docs/kit', variant: 'outline' }
+		{ label: 'Example Posts', href: blogConfig.path },
+		{ label: 'GitHub', href: 'https://github.com/asbedb/melan', variant: 'outline' }
 	]}
 	highlights={['SvelteKit', 'Twinkleplop', 'shadcn-svelte', 'mdsvex', 'Tailwind CSS']}
 />
