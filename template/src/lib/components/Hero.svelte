@@ -62,9 +62,9 @@
 		definition,
 		summary = siteConfig.description,
 		actions = [
-			{ 
-				label: getRoute(blogConfig.path)?.label ?? 'Blog', 
-				href: blogConfig.path 
+			{
+				label: getRoute(blogConfig.path)?.label ?? 'Blog',
+				href: blogConfig.path
 			}
 		],
 		highlights = []

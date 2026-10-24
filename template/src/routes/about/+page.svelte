@@ -151,7 +151,6 @@
 			<p>
 				{item.body}
 				<span class="text-sm text-muted-foreground">
-				
 					<code>{item.option}</code> in <code>{item.file}</code>
 				</span>
 			</p>
