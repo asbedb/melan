@@ -6,8 +6,17 @@
 	import PaletteIcon from '@lucide/svelte/icons/palette';
 	import SettingsIcon from '@lucide/svelte/icons/settings';
 	import { resolve } from '$app/paths';
-	import { blogConfig, getRoute, isRouteEnabled, siteConfig } from '@asbedb/melan';
+	import { blogConfig, copyButtons, getRoute, isRouteEnabled, siteConfig } from '@asbedb/melan';
 	import { Button, Separator } from '@asbedb/melan/ui';
+	// Each example is a Markdown code block, highlighted when the site is built.
+	import AccentExample from './examples/accent.md';
+	import BlogExample from './examples/blog.md';
+	import BrandExample from './examples/brand.md';
+	import FooterExample from './examples/footer.md';
+	import LatestPostsExample from './examples/latest-posts.md';
+	import NameExample from './examples/name.md';
+	import RoutesExample from './examples/routes.md';
+	import ThemeExample from './examples/theme.md';
 
 	const title = getRoute('/about')?.label ?? 'About';
 	const description = `What ${siteConfig.title} is and how it's put together.`;
@@ -39,82 +48,56 @@
 			option: 'site.title, site.description',
 			file: 'melan.config.ts',
 			body: 'The site name is used in browser tabs and share cards. The description is the homepage’s search and share summary.',
-			example: `title: 'My Blog',
-description: 'Notes on things I build.',`
+			example: NameExample
 		},
 		{
 			title: 'Pages and the navbar',
 			option: 'site.routes',
 			file: 'melan.config.ts',
 			body: 'The order of the list is the navbar order. Set nav: false to keep a page but leave it out of the navbar, or enabled: false to switch it off entirely.',
-			example: `routes: [
-	{ href: '/', label: 'Home', nav: false },
-	{ href: '/about', label: 'About' },
-	{ href: '/blog', label: 'Blog' }
-],`
+			example: RoutesExample
 		},
 		{
 			title: 'Navbar icon',
 			option: 'site.brand',
 			file: 'melan.config.ts',
 			body: 'Show the icon, the icon and title, or just the title, with an optional override for the homepage. Single-colour icons follow light and dark mode.',
-			example: `brand: {
-	display: 'icon', // or 'icon-title', 'title'
-	icon: 'icon.svg', // a file in static/
-	home: { display: 'icon-title' }
-},`
+			example: BrandExample
 		},
 		{
 			title: 'Accent colour',
 			option: 'site.accent',
 			file: 'melan.config.ts',
 			body: 'One colour for post titles, link underlines, quote borders and the contents bar. Any CSS colour works; leave out dark to use the same colour in both modes.',
-			example: `accent: {
-	light: '#2563eb',
-	dark: '#60a5fa'
-},`
+			example: AccentExample
 		},
 		{
 			title: 'Recent posts',
 			option: 'site.latestPosts',
 			file: 'melan.config.ts',
 			body: 'How many of the newest posts to show on the homepage. The hero above them is your own component in src/lib/components/Hero.svelte, so edit it or delete it.',
-			example: `latestPosts: { heading: 'Latest Posts', count: 6 },`
+			example: LatestPostsExample
 		},
 		{
 			title: 'Footer',
 			option: 'site.footer',
 			file: 'melan.config.ts',
 			body: 'A line of text, links and the “Powered by Melan” credit. {year} and {title} are filled in for you.',
-			example: `footer: {
-	text: '© {year} {title}',
-	links: [{ label: 'GitHub', href: 'https://github.com/you' }],
-	poweredBy: true
-},`
+			example: FooterExample
 		},
 		{
 			title: 'The blog',
 			option: 'blog',
 			file: 'melan.config.ts',
 			body: 'Date format, the blog’s URL, where images are looked up, and which languages code is highlighted in.',
-			example: `locale: 'en-AU',
-path: '/blog',
-assets: { covers: '/img/covers', images: '/img' },`
+			example: BlogExample
 		},
 		{
 			title: 'Fonts and theme colours',
 			option: 'CSS variables',
 			file: 'src/routes/layout.css',
 			body: 'Not part of the config: fonts, colours and the corner radius are CSS variables. To restyle the site, uncomment the custom theme block and set your own light and dark colours.',
-			example: `:root {
-	--background: oklch(0.98 0.01 85);
-	--foreground: oklch(0.22 0.02 260);
-}
-
-.dark {
-	--background: oklch(0.18 0.02 260);
-	--foreground: oklch(0.94 0.01 85);
-}`
+			example: ThemeExample
 		}
 	];
 </script>
@@ -141,7 +124,7 @@ assets: { covers: '/img/covers', images: '/img' },`
 		<ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 			{#each features as feature (feature.title)}
 				<li class="flex flex-col gap-3 rounded-xl border bg-card p-5 text-card-foreground">
-					<feature.icon class="size-5 text-muted-foreground" />
+					<feature.icon class="size-5 text-ink" />
 					<h3>{feature.title}</h3>
 					<p class="text-sm text-pretty text-muted-foreground">{feature.body}</p>
 				</li>
@@ -149,7 +132,11 @@ assets: { covers: '/img/covers', images: '/img' },`
 		</ul>
 	</section>
 
-	<section aria-labelledby="config-heading" class="blog-prose mt-12 max-w-3xl">
+	<section
+		aria-labelledby="config-heading"
+		class="blog-prose mt-12 max-w-3xl"
+		{@attach copyButtons}
+	>
 		<h2 id="config-heading">Making it yours</h2>
 		<p>
 			Most of the site is set from one config file, so you can make it your own without touching any
@@ -167,7 +154,7 @@ assets: { covers: '/img/covers', images: '/img' },`
 					<code>{item.option}</code> in <code>{item.file}</code>
 				</span>
 			</p>
-			<pre class="[tab-size:2]"><code>{item.example}</code></pre>
+			<item.example />
 		{/each}
 
 		<p>

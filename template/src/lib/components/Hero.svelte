@@ -61,7 +61,12 @@
 		heading = siteConfig.title,
 		definition,
 		summary = siteConfig.description,
-		actions = [{ label: getRoute(blogConfig.path)?.label ?? 'Blog', href: blogConfig.path }],
+		actions = [
+			{
+				label: getRoute(blogConfig.path)?.label ?? 'Blog',
+				href: blogConfig.path
+			}
+		],
 		highlights = []
 	}: HeroProps = $props();
 
@@ -103,7 +108,7 @@
 			</p>
 		{/if}
 		{#if eyebrow}
-			<Badge variant="ghost" class="h-7 text-sm italic">{eyebrow}</Badge>
+			<code class="w-fit p-1.5 text-sm">{eyebrow}</code>
 		{/if}
 		<p class="max-w-4xl text-lg text-pretty text-muted-foreground sm:text-xl">{summary}</p>
 
