@@ -9,6 +9,7 @@ import type { BlogConfig } from '../config/index.ts';
 import { CODE_BLOCK_CLASS } from './code-block.ts';
 import { remarkExternalLinks } from './external-links.ts';
 import { remarkHeadings } from './headings.ts';
+import { remarkYouTube } from './youtube.ts';
 import { highlightCode, loadHighlighters } from './highlight.ts';
 import { remarkKatex } from './math.ts';
 import { remarkReadingTime } from './reading-time.ts';
@@ -41,6 +42,7 @@ export function blogPreprocess(
 			remarkMath,
 			remarkKatex,
 			remarkCodePen,
+			remarkYouTube,
 			remarkExternalLinks,
 			[remarkAssetPaths, { ...blog.assets, base: options.base }]
 		],

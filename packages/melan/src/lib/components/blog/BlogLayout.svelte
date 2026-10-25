@@ -4,6 +4,7 @@
 	import { Separator } from '../ui/separator/index.ts';
 	import 'katex/dist/katex.min.css';
 	import { codePenEmbeds } from '../../blog/codepen-embeds.ts';
+	import { youtubeEmbeds } from '../../blog/youtube-embeds.ts';
 	import { copyButtons } from '../../blog/copy-buttons.ts';
 	import { headingLinks } from '../../blog/heading-links.ts';
 	import { getShareImage, getSummary, normalizeTags } from '../../blog/frontmatter.ts';
@@ -67,6 +68,7 @@
 			{@attach copyButtons}
 			{@attach codePenEmbeds}
 			{@attach headingLinks}
+			{@attach youtubeEmbeds}
 			class="blog-prose lg:col-start-1 lg:row-start-1"
 		>
 			{@render children?.()}
