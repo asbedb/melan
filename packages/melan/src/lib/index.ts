@@ -14,6 +14,7 @@ export {
 } from './blog/frontmatter.ts';
 export { copyButtons } from './blog/copy-buttons.ts';
 export { codePenEmbeds } from './blog/codepen-embeds.ts';
+export { youtubeEmbeds } from './blog/youtube-embeds.ts';
 export { headingLinks, scrollToHeading } from './blog/heading-links.ts';
 export {
 	getAdjacentPosts,

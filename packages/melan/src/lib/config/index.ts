@@ -132,6 +132,12 @@ export interface BlogConfig {
 		/** Tabs the embed opens on, e.g. `'result'` or `'html,result'`. */
 		tabs: string;
 	};
+	youtube: {
+		/**height of embed in pixels. */
+		height: number;
+		/**width of embed in pixels */
+		width: number;
+	};
 }
 
 /** What goes in `melan.config.ts`. Anything left out of `blog` uses Melan's defaults. */
@@ -166,6 +172,10 @@ export const defaultBlogConfig: BlogConfig = {
 	codepen: {
 		height: 400,
 		tabs: 'result'
+	},
+	youtube: {
+		height: 400,
+		width: 600
 	}
 };
 
@@ -186,7 +196,8 @@ export function resolveConfig(config: MelanConfig): ResolvedConfig {
 			path,
 			assets: { ...defaultBlogConfig.assets, ...blog.assets },
 			highlight: { ...defaultBlogConfig.highlight, ...blog.highlight },
-			codepen: { ...defaultBlogConfig.codepen, ...blog.codepen }
+			codepen: { ...defaultBlogConfig.codepen, ...blog.codepen },
+			youtube: { ...defaultBlogConfig.youtube, ...blog.youtube }
 		}
 	};
 }

@@ -9,4 +9,5 @@ export { default as PostCard } from './PostCard.svelte';
 export { default as LatestPosts } from './LatestPosts.svelte';
 export { default as PostNav } from './PostNav.svelte';
 export { default as TableOfContents } from './TableOfContents.svelte';
+export { default as YouTube } from './YouTube.svelte';
 export { default as BlogIndex } from './BlogIndex.svelte';

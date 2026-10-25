@@ -33,3 +33,11 @@ Paste a link to a pen on a line of its own and it becomes an embed that follows 
 https://codepen.io/chriscoyier/pen/gfdDu
 
 A CodePen link inside a sentence, like [this one](https://codepen.io/chriscoyier/pen/gfdDu), stays a normal link.
+
+## YouTube
+
+In a similar fashion post youtube link on a line of its own and it becomes an embed:
+
+https://www.youtube.com/watch?v=rv3Yq-B8qp4
+
+A youtube link like [this one](https://www.youtube.com/watch?v=rv3Yq-B8qp4) inside a sentence stays a normal link.
