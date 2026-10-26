@@ -32,15 +32,27 @@ Here are a few things worth checking:
 
 ## Images
 
-Inline images use standard Markdown syntax and pick up rounded corners from the prose styles.
+Inline images use standard Markdown syntax and pick up rounded corners from the prose styles. Always describe what the image shows in the square brackets. Screen readers read it out, and it shows up if the image fails to load.
 
-### Inline images
+You can provide captions to display beneath images - create a captioned image by simply writing the keyword `caption:` prefixed as to your desired text underneath the image like so.
+
+```md
+![The orange Svelte logo on a blurred pink and yellow background](placeholder-inline-1.jpg)
+caption: Check out this cool svelte logo!
+```
+
+![The orange Svelte logo on a blurred pink and yellow background](placeholder-inline-1.jpg)
+caption: Check out this cool svelte logo!
+
+Regular image syntax will simply return an image without a caption.
+
+```md
+![The orange Svelte logo on a blurred pink and yellow background](placeholder-inline-1.jpg)
+```
 
 ![The orange Svelte logo on a blurred pink and yellow background](placeholder-inline-1.jpg)
 
 ### Alt text
-
-Always describe what the image shows in the square brackets. Screen readers read it out, and it shows up if the image fails to load.
 
 ## Quotes
 

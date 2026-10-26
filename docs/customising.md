@@ -185,7 +185,7 @@ Every post is wrapped in `src/lib/components/PostLayout.svelte`, set as `layout`
 | `TableOfContents` | The "On this page" contents                              |
 | `PostNav`         | The previous and next post links                         |
 
-The `copyButtons`, `codePenEmbeds` and `headingLinks` attachments on the post body add the code copy buttons, CodePen embeds and smooth-scrolling heading links. Keep them if you rearrange things. To go back to Melan's layout, delete the `layout` line in `vite.config.ts`.
+The `copyButtons`, `codePenEmbeds`, `youtubeEmbeds`, `captionEmbeds` and `headingLinks` attachments on the post body add the code copy buttons, CodePen and YouTube embeds, image captions and smooth-scrolling heading links. Keep them if you rearrange things. To go back to Melan's layout, delete the `layout` line in `vite.config.ts`.
 
 ### Changing a Melan component
 
