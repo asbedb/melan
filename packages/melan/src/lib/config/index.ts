@@ -135,8 +135,6 @@ export interface BlogConfig {
 	youtube: {
 		/**height of embed in pixels. */
 		height: number;
-		/**width of embed in pixels */
-		width: number;
 	};
 }
 
@@ -174,8 +172,7 @@ export const defaultBlogConfig: BlogConfig = {
 		tabs: 'result'
 	},
 	youtube: {
-		height: 400,
-		width: 600
+		height: 400
 	}
 };
 

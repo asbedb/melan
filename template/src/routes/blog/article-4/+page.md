@@ -1,5 +1,5 @@
 ---
-title: Maths and CodePen Embeds
+title: Maths, CodePen and YouTube Embeds
 date: 2026-10-22
 description: A sample post showing KaTeX equations and an embedded CodePen.
 tags:
@@ -36,7 +36,7 @@ A CodePen link inside a sentence, like [this one](https://codepen.io/chriscoyier
 
 ## YouTube
 
-In a similar fashion post YouTube link on a line of its own and it becomes an embed:
+In a similar fashion paste a YouTube link on a line of its own and it becomes an embed:
 
 https://www.youtube.com/watch?v=rv3Yq-B8qp4
 
