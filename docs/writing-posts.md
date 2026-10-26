@@ -124,6 +124,29 @@ $$
 
 See [KaTeX's supported functions](https://katex.org/docs/supported) for what you can write.
 
+## YouTube embeds
+
+Paste a link to a YouTube video on a line of its own and it becomes an embedded video:
+
+```md
+Check out this video:
+
+https://youtu.be/rv3Yq-B8qp4?si=9kmX3qK0v5CjXRmV
+```
+
+- A YouTube link inside a sentence stays a normal link.
+- Without JavaScript, readers get a link to the pen instead.
+
+The height is set for every pen with embed in the blog config. See [Configuration](configuration.md#blog-config-srclibblogconfigts). To change them for one video, use the component instead:
+
+```md
+<script>
+	import { YouTube } from '#lib/components/blog/index.ts';
+</script>
+
+<YouTube height={600} />
+```
+
 ## CodePen embeds
 
 Paste a link to a pen on a line of its own and it becomes an embedded, runnable pen:
