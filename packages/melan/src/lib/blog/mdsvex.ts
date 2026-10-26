@@ -4,6 +4,7 @@ import { mdsvex, escapeSvelte } from 'mdsvex';
 import remarkMath from 'remark-math';
 import type { PreprocessorGroup } from 'svelte/compiler';
 import { remarkAssetPaths } from './assets.ts';
+import { remarkCaptions } from './captions.ts';
 import { remarkCodePen } from './codepen.ts';
 import type { BlogConfig } from '../config/index.ts';
 import { CODE_BLOCK_CLASS } from './code-block.ts';
@@ -44,7 +45,9 @@ export function blogPreprocess(
 			remarkCodePen,
 			remarkYouTube,
 			remarkExternalLinks,
-			[remarkAssetPaths, { ...blog.assets, base: options.base }]
+			[remarkAssetPaths, { ...blog.assets, base: options.base }],
+			// After remarkAssetPaths: the image becomes raw HTML, which that plugin can't see.
+			remarkCaptions
 		],
 		highlight: {
 			highlighter: async (code, lang) => {

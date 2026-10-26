@@ -81,6 +81,30 @@ To use different folders, e.g. `static/cover` for covers, change `assets` in the
 
 Images get rounded corners from the post styles.
 
+### Captions
+
+To put a caption under an image, write `caption:` and the text on the line straight after it:
+
+```md
+![The orange Svelte logo on a blurred pink and yellow background](svelte-logo.jpg)
+caption: Check out this cool Svelte logo!
+```
+
+- The caption can also go in its own paragraph, after a blank line.
+- An image without a `caption:` line stays a plain image.
+- Captions are plain text, so formatting such as `**bold**` or links is dropped.
+- The caption is extra to the alt text, not a replacement. Still describe the image in the square brackets.
+
+To caption an image from Svelte, or pass it other `<img>` attributes, use the component instead. The image path isn't looked up in the image folder here, so give the full path:
+
+```md
+<script>
+	import { CaptionedImage } from '#lib/components/blog/index.ts';
+</script>
+
+<CaptionedImage src="/img/svelte-logo.jpg" alt="The orange Svelte logo" caption="Check out this cool Svelte logo!" />
+```
+
 ### Alt text
 
 Describe every image: in the square brackets for images in the post, and with `coveralt` for the cover. Screen readers read it out, and it shows if the image fails to load.

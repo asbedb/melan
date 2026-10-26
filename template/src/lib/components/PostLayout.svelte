@@ -19,6 +19,7 @@
 		PostNav,
 		TableOfContents,
 		youtubeEmbeds,
+		captionEmbeds,
 		type PostFrontmatter
 	} from '@asbedb/melan';
 	import { Separator } from '@asbedb/melan/ui';
@@ -78,6 +79,7 @@
 			{@attach codePenEmbeds}
 			{@attach headingLinks}
 			{@attach youtubeEmbeds}
+			{@attach captionEmbeds}
 			class="blog-prose lg:col-start-1 lg:row-start-1"
 		>
 			{@render children?.()}

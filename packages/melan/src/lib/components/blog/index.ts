@@ -11,3 +11,4 @@ export { default as PostNav } from './PostNav.svelte';
 export { default as TableOfContents } from './TableOfContents.svelte';
 export { default as YouTube } from './YouTube.svelte';
 export { default as BlogIndex } from './BlogIndex.svelte';
+export { default as CaptionedImage } from './CaptionedImage.svelte';
