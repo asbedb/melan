@@ -1,5 +1,5 @@
 ---
-title: Maths and CodePen Embeds
+title: Maths, CodePen and YouTube Embeds
 date: 2026-10-22
 description: A sample post showing KaTeX equations and an embedded CodePen.
 tags:
