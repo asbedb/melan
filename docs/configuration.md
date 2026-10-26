@@ -315,6 +315,9 @@ blog: {
 	codepen: {
 		height: 400,
 		tabs: 'result'
+	},
+	youtube: {
+		height: 400
 	}
 }
 ```
@@ -328,6 +331,7 @@ blog: {
 | `highlight.langs` |                 | Languages to highlight. Other languages are shown as plain text. See [Code highlighting](#code-highlighting). |
 | `codepen.height`  | `400`           | Height in pixels of [embedded pens](writing-posts.md#codepen-embeds).                                         |
 | `codepen.tabs`    | `'result'`      | Tabs a pen opens on, e.g. `'result'`, or `'html,result'` to show the HTML beside the result.                  |
+| `youtube.height`  | `400`           | Height in pixels of [embedded YouTube videos](writing-posts.md#youtube-embeds).                               |
 
 ### Renaming the blog
 
