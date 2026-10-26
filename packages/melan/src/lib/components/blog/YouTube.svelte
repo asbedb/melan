@@ -5,13 +5,11 @@
 	let {
 		url,
 		start,
-		height = blogConfig.youtube.height,
-		width = blogConfig.youtube.width
+		height = blogConfig.youtube.height
 	}: {
 		url: string; // full YouTube link or just the video ID
 		start?: number; // optional start time in seconds
 		height?: number;
-		width?: number;
 	} = $props();
 
 	const id = $derived(getYouTubeId(url));
@@ -25,9 +23,9 @@
 
 {#if src}
 	<iframe
-		{width}
 		{height}
 		{src}
+		class="w-full rounded-lg border"
 		title="YouTube video player"
 		frameborder="0"
 		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
