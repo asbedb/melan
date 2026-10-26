@@ -36,7 +36,7 @@ A CodePen link inside a sentence, like [this one](https://codepen.io/chriscoyier
 
 ## YouTube
 
-In a similar fashion post YouTube link on a line of its own and it becomes an embed:
+In a similar fashion paste a YouTube link on a line of its own and it becomes an embed:
 
 https://www.youtube.com/watch?v=rv3Yq-B8qp4
 
