@@ -1,6 +1,6 @@
 {
 	"name": "@asbedb/melan",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"description": "A Markdown blog for SvelteKit: Twinkleplop highlighting, KaTeX, CodePen embeds and shadcn-svelte components, set up from one config file.",
 	"license": "GPL-3.0-or-later",
 	"repository": {
