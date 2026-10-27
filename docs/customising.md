@@ -169,9 +169,14 @@ Your site is split in two. The pieces most people never need to change, such as 
 
 ```svelte
 <script lang="ts">
-	import { Footer, Navbar, PageLoader, SiteHead, siteConfig } from '@asbedb/melan';
+	import { Footer, InitialLoader, Navbar, PageLoader, SiteHead, siteConfig } from '@asbedb/melan';
 </script>
 ```
+
+Two loaders come in the layout, and either can be removed:
+
+- **`<InitialLoader />`** covers the page on the first visit until it has finished loading, then fades out. It never stays up longer than `timeout` (6000 ms by default), and visitors without JavaScript don't see it. Delete it to show the page as soon as it arrives.
+- **`<PageLoader />`** shows a thin bar at the top while moving between pages, once a move takes longer than `delay` (150 ms by default).
 
 ### The post layout
 
