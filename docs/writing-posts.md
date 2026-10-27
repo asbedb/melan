@@ -81,6 +81,8 @@ To use different folders, e.g. `static/cover` for covers, change `assets` in the
 
 Images get rounded corners from the post styles.
 
+Images in `static/` get their width and height filled in when the site is built, so the page saves their space and doesn't jump as they load. Until an image arrives, its space shimmers, then the image fades in. Images in the post body also load lazily, only as they're scrolled near. Images from other sites can't be measured, so they still take up their space only once they load.
+
 ### Captions
 
 To put a caption under an image, write `caption:` and the text on the line straight after it:

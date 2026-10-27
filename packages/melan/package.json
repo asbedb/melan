@@ -90,6 +90,7 @@
 		"@twinkleplop/yaml": "^0.1.7",
 		"bits-ui": "^2.20.0",
 		"cn": "^0.5.0",
+		"image-size": "^2.0.4",
 		"katex": "^0.19.0",
 		"mdsvex": "^0.12.8",
 		"mode-watcher": "^1.1.0",

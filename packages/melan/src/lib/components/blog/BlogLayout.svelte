@@ -8,6 +8,7 @@
 	import { captionEmbeds } from '../../blog/caption-embeds.ts';
 	import { copyButtons } from '../../blog/copy-buttons.ts';
 	import { headingLinks } from '../../blog/heading-links.ts';
+	import { imageSkeletons } from '../../blog/image-skeletons.ts';
 	import { getShareImage, getSummary, normalizeTags } from '../../blog/frontmatter.ts';
 	import type { PostFrontmatter } from '../../blog/types.ts';
 	import PostHead from './PostHead.svelte';
@@ -71,6 +72,7 @@
 			{@attach headingLinks}
 			{@attach youtubeEmbeds}
 			{@attach captionEmbeds}
+			{@attach imageSkeletons}
 			class="blog-prose lg:col-start-1 lg:row-start-1"
 		>
 			{@render children?.()}

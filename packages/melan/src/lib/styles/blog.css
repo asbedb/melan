@@ -67,6 +67,33 @@
 			center / contain no-repeat;
 	}
 
+	/* Images still loading (marked in blog/image-skeletons.ts) shimmer in the space their width
+	   and height save for them, then fade in. */
+	& img[data-loading] {
+		background: linear-gradient(
+				100deg,
+				var(--muted) 40%,
+				color-mix(in oklab, var(--muted), var(--background) 60%) 50%,
+				var(--muted) 60%
+			)
+			0 0 / 300% 100%;
+		animation: image-skeleton 1.4s ease-in-out infinite;
+	}
+
+	& img[data-loaded] {
+		animation: image-fade-in 300ms ease-out;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		& img[data-loading] {
+			animation: none;
+		}
+
+		& img[data-loaded] {
+			animation: none;
+		}
+	}
+
 	& .code-block {
 		@apply my-6;
 	}
@@ -109,6 +136,21 @@
 /* Code blocks (highlighted in blog/highlight.ts) take their colours from the Twinkleplop theme
    imported in melan.css, which switches to its dark palette under the same .dark class as the
    rest of the site. */
+@keyframes image-skeleton {
+	from {
+		background-position: 100% 0;
+	}
+	to {
+		background-position: 0 0;
+	}
+}
+
+@keyframes image-fade-in {
+	from {
+		opacity: 0;
+	}
+}
+
 /* Callout colours, lighter in dark mode so the titles stay readable. Notes use the accent. */
 .blog-prose {
 	& .callout-note {
