@@ -3,10 +3,10 @@
 	import { page } from '$app/state';
 	import { resolvePath } from '../../paths.ts';
 	import { Badge } from '../ui/badge/index.ts';
-	import { tagHref } from '../../blog/frontmatter.ts';
 	import type { PostSummary } from '../../blog/posts.ts';
 	import { blogConfig, getRoute, siteConfig } from '../../config/runtime.ts';
 	import PostCard from './PostCard.svelte';
+	import Tag from './Tag.svelte';
 
 	interface Props {
 		posts: PostSummary[];
@@ -49,13 +49,11 @@
 				</li>
 				{#each tags as tag (tag)}
 					<li>
-						<Badge
-							variant={tag === activeTag ? 'default' : 'outline'}
-							href={tagHref(tag)}
-							aria-current={tag === activeTag ? 'page' : undefined}
-						>
+						<Tag
 							{tag}
-						</Badge>
+							variant={tag === activeTag ? 'default' : 'outline'}
+							aria-current={tag === activeTag ? 'page' : undefined}
+						/>
 					</li>
 				{/each}
 			</ul>

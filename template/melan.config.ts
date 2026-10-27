@@ -42,6 +42,10 @@ export default defineConfig({
 		codepen: {
 			height: 400,
 			tabs: 'result'
+		},
+		tags: {
+			variant: 'link',
+			hash: true
 		}
 	}
 });

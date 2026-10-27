@@ -46,5 +46,6 @@ export type {
 	LatestPostsConfig,
 	ResolvedConfig,
 	SiteConfig,
-	SiteRoute
+	SiteRoute,
+	TagVariant
 } from './config/index.ts';

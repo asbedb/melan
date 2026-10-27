@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { resolvePath } from '../../paths.ts';
 	import { Badge } from '../ui/badge/index.ts';
-	import { tagHref } from '../../blog/frontmatter.ts';
 	import type { PostSummary } from '../../blog/posts.ts';
 	import PostMeta from './PostMeta.svelte';
+	import Tag from './Tag.svelte';
 
 	interface Props {
 		post: PostSummary;
@@ -50,7 +50,7 @@
 					<li><Badge variant="destructive">Draft</Badge></li>
 				{/if}
 				{#each post.tags as tag (tag)}
-					<li><Badge variant="secondary" href={tagHref(tag)}>{tag}</Badge></li>
+					<li><Tag {tag} /></li>
 				{/each}
 			</ul>
 		{/if}
