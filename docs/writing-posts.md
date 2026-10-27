@@ -196,6 +196,22 @@ The height and the tabs a pen opens on are set for every pen with `codepen` in t
 <CodePen user="your-name" pen="abcDEF" height={600} tabs="html,result" title="A CSS loading spinner" />
 ```
 
+## Callouts
+
+Put a note, tip or warning in a coloured box by opening it with `:::` and the type, and closing it with `:::` on a line of its own:
+
+```md
+:::note
+Posts are sorted by `date`, newest first.
+:::
+```
+
+The types are `note`, `tip`, `important`, `warning` and `caution`. Each has its own colour; notes use the site's [accent colour](configuration.md#accent-the-accent-colour).
+
+- The box gets a title from its type, e.g. "Note". Write your own after the type to replace it: `:::tip Did you know?`.
+- Anything goes inside: several paragraphs, lists, code blocks, images and embeds. When a callout ends with a list, leave a blank line before the closing `:::`, or Prettier indents it into the last list item. (It still works, it just looks odd.)
+- An unknown type, or a callout with no closing `:::`, shows as plain text, so a typo is easy to spot.
+
 ## Links
 
 Write links the usual Markdown way: `[the SvelteKit docs](https://svelte.dev/docs/kit)`.

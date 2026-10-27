@@ -60,6 +60,44 @@ Regular image syntax will simply return an image without a caption.
 >
 > — An oft-quoted designer
 
+## Callouts
+
+Open a callout with `:::` and its type, and close it with `:::` on a line of its own:
+
+### `note`
+
+:::note
+This is a note. It picks up the site's accent colour.
+:::
+
+### `tip`
+
+:::tip Did you know?
+A title after the type replaces the default one. Callouts can hold more than one paragraph:
+
+- lists
+- `inline code`
+- and **formatting**
+  :::
+
+### `important`
+
+:::important
+Something readers shouldn't miss.
+:::
+
+### `warning`
+
+:::warning
+Something that could trip readers up.
+:::
+
+### `caution`
+
+:::caution
+Something that could go wrong if ignored.
+:::
+
 ## Tables
 
 ### Frontmatter fields
