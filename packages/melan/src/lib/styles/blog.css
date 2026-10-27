@@ -81,6 +81,26 @@
 		@apply my-6;
 	}
 
+	/* Callouts (blog/callouts.ts): a bar, tint and title in the colour set for each type below. */
+	& .callout {
+		@apply my-6 rounded-e-lg border-s-4 px-5 py-4;
+		border-color: var(--callout);
+		background-color: color-mix(in oklab, var(--callout) 8%, transparent);
+
+		& > :first-child {
+			@apply mt-0;
+		}
+
+		& > :last-child {
+			@apply mb-0;
+		}
+	}
+
+	& .callout-title {
+		@apply mb-2 font-semibold;
+		color: var(--callout);
+	}
+
 	& :not(pre) > code {
 		@apply rounded bg-muted px-1.5 py-0.5 text-[0.875em];
 	}
@@ -89,6 +109,43 @@
 /* Code blocks (highlighted in blog/highlight.ts) take their colours from the Twinkleplop theme
    imported in melan.css, which switches to its dark palette under the same .dark class as the
    rest of the site. */
+/* Callout colours, lighter in dark mode so the titles stay readable. Notes use the accent. */
+.blog-prose {
+	& .callout-note {
+		--callout: var(--color-ink);
+	}
+
+	& .callout-tip {
+		--callout: oklch(0.55 0.15 150);
+	}
+
+	& .callout-important {
+		--callout: oklch(0.52 0.2 300);
+	}
+
+	& .callout-warning {
+		--callout: oklch(0.6 0.15 70);
+	}
+
+	& .callout-caution {
+		--callout: var(--destructive);
+	}
+
+	.dark & {
+		& .callout-tip {
+			--callout: oklch(0.75 0.15 150);
+		}
+
+		& .callout-important {
+			--callout: oklch(0.75 0.15 300);
+		}
+
+		& .callout-warning {
+			--callout: oklch(0.8 0.14 80);
+		}
+	}
+}
+
 .blog-prose pre.twinkleplop {
 	background-color: var(--twp-background, var(--muted));
 	color: var(--twp-identifier, var(--foreground));

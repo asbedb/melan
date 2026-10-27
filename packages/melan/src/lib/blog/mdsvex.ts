@@ -4,6 +4,7 @@ import { mdsvex, escapeSvelte } from 'mdsvex';
 import remarkMath from 'remark-math';
 import type { PreprocessorGroup } from 'svelte/compiler';
 import { remarkAssetPaths } from './assets.ts';
+import { remarkCallouts } from './callouts.ts';
 import { remarkCaptions } from './captions.ts';
 import { remarkCodePen } from './codepen.ts';
 import type { BlogConfig } from '../config/index.ts';
@@ -47,7 +48,9 @@ export function blogPreprocess(
 			remarkExternalLinks,
 			[remarkAssetPaths, { ...blog.assets, base: options.base }],
 			// After remarkAssetPaths: the image becomes raw HTML, which that plugin can't see.
-			remarkCaptions
+			remarkCaptions,
+			// Last, so embeds and captioned images inside a callout are already in place.
+			remarkCallouts
 		],
 		highlight: {
 			highlighter: async (code, lang) => {
