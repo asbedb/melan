@@ -318,6 +318,10 @@ blog: {
 	},
 	youtube: {
 		height: 400
+	},
+	tags: {
+		variant: 'secondary',
+		hash: false
 	}
 }
 ```
@@ -332,6 +336,30 @@ blog: {
 | `codepen.height`  | `400`           | Height in pixels of [embedded pens](writing-posts.md#codepen-embeds).                                         |
 | `codepen.tabs`    | `'result'`      | Tabs a pen opens on, e.g. `'result'`, or `'html,result'` to show the HTML beside the result.                  |
 | `youtube.height`  | `400`           | Height in pixels of [embedded YouTube videos](writing-posts.md#youtube-embeds).                               |
+| `tags.variant`    | `'secondary'`   | How tags look. See [Tag styles](#tag-styles).                                                                 |
+| `tags.hash`       | `false`         | Show tags as `#tag`.                                                                                          |
+
+### Tag styles
+
+Tags show on post cards and at the top of each post, and link to the blog index filtered to that tag. `tags.variant` sets their look:
+
+| `variant`     | Looks like                                             |
+| ------------- | ------------------------------------------------------ |
+| `'secondary'` | A filled, muted pill. The default.                     |
+| `'outline'`   | A pill with a border and no fill.                      |
+| `'default'`   | A pill filled with the primary colour.                 |
+| `'ghost'`     | Plain text that gets a background on hover.            |
+| `'link'`      | Plain text in the primary colour, underlined on hover. |
+
+`hash: true` puts a `#` in front of each tag and works with any variant. For classic hashtags, use both:
+
+```ts
+blog: {
+	tags: { variant: 'link', hash: true }
+}
+```
+
+The tag filter on the blog index keeps its outlined pills, with the selected tag filled, so it stays clear which one is picked; `hash` applies there too.
 
 ### Renaming the blog
 

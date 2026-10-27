@@ -136,7 +136,20 @@ export interface BlogConfig {
 		/**height of embed in pixels. */
 		height: number;
 	};
+	/** How tags look on post cards, post headers and the blog index filter. */
+	tags: {
+		/**
+		 * Badge look for post tags: `'secondary'` (filled, muted), `'outline'`, `'default'` (filled
+		 * in the primary colour), `'ghost'` (no background until hovered) or `'link'` (plain text).
+		 * The blog index filter keeps its own look so the selected tag stands out.
+		 */
+		variant: TagVariant;
+		/** Show tags as `#tag`. Pair with `variant: 'link'` for plain hashtags. */
+		hash: boolean;
+	};
 }
+
+export type TagVariant = 'default' | 'secondary' | 'outline' | 'ghost' | 'link';
 
 /** What goes in `melan.config.ts`. Anything left out of `blog` uses Melan's defaults. */
 export interface MelanConfig {
@@ -173,6 +186,10 @@ export const defaultBlogConfig: BlogConfig = {
 	},
 	youtube: {
 		height: 400
+	},
+	tags: {
+		variant: 'secondary',
+		hash: false
 	}
 };
 
@@ -194,7 +211,8 @@ export function resolveConfig(config: MelanConfig): ResolvedConfig {
 			assets: { ...defaultBlogConfig.assets, ...blog.assets },
 			highlight: { ...defaultBlogConfig.highlight, ...blog.highlight },
 			codepen: { ...defaultBlogConfig.codepen, ...blog.codepen },
-			youtube: { ...defaultBlogConfig.youtube, ...blog.youtube }
+			youtube: { ...defaultBlogConfig.youtube, ...blog.youtube },
+			tags: { ...defaultBlogConfig.tags, ...blog.tags }
 		}
 	};
 }
