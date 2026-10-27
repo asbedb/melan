@@ -6,6 +6,7 @@
 	import {
 		fadeBetweenPages,
 		Footer,
+		InitialLoader,
 		ModeWatcher,
 		Navbar,
 		PageLoader,
@@ -24,6 +25,7 @@
 </svelte:head>
 <SiteHead />
 <ModeWatcher />
+<InitialLoader />
 <PageLoader />
 <!-- Column layout keeps the footer at the bottom of the screen on short pages. -->
 <div class="flex min-h-svh flex-col">
