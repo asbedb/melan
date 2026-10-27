@@ -17,6 +17,8 @@ export const captionEmbeds: Attachment<HTMLElement> = (node) => {
 					src: img.getAttribute('src')!,
 					alt: img.alt,
 					title: img.title || undefined,
+					width: img.getAttribute('width') ?? undefined,
+					height: img.getAttribute('height') ?? undefined,
 					caption: placeholder.dataset.caption || undefined
 				}
 			})

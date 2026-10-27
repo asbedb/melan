@@ -7,6 +7,8 @@ interface Node {
 	title?: string | null;
 	value?: string;
 	children?: Node[];
+	/** Width and height from remarkAssetPaths, for images found in `static/`. */
+	data?: { hProperties?: { width?: number; height?: number } };
 }
 
 /** Class on the placeholder a captioned image becomes; blog/caption-embeds.ts swaps in the component. */
@@ -42,9 +44,11 @@ function placeholder(image: Node, caption: string): string {
 	const src = escapeHtml(image.url!);
 	const alt = escapeHtml(image.alt ?? '');
 	const title = image.title ? ` title="${escapeHtml(image.title)}"` : '';
+	const { width, height } = image.data?.hProperties ?? {};
+	const size = width && height ? ` width="${width}" height="${height}"` : '';
 	return (
 		`<figure class="${CAPTIONED_IMAGE_CLASS}" data-caption="${escapeHtml(caption)}">` +
-		`<img src="${src}" alt="${alt}"${title} loading="lazy" />` +
+		`<img src="${src}" alt="${alt}"${title}${size} loading="lazy" decoding="async" />` +
 		(caption ? `<figcaption>${escapeHtml(caption)}</figcaption>` : '') +
 		`</figure>`
 	);

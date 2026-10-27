@@ -12,6 +12,7 @@
 		getShareImage,
 		getSummary,
 		headingLinks,
+		imageSkeletons,
 		normalizeTags,
 		PostCover,
 		PostHead,
@@ -80,6 +81,7 @@
 			{@attach headingLinks}
 			{@attach youtubeEmbeds}
 			{@attach captionEmbeds}
+			{@attach imageSkeletons}
 			class="blog-prose lg:col-start-1 lg:row-start-1"
 		>
 			{@render children?.()}

@@ -3,5 +3,6 @@
 </script>
 
 <figure class="mt-8 overflow-hidden rounded-xl border sm:mt-10">
-	<img {src} {alt} class="aspect-video w-full object-cover" />
+	<!-- The fixed shape saves its space; the muted fill shows until the image arrives. -->
+	<img {src} {alt} class="aspect-video w-full bg-muted object-cover" />
 </figure>

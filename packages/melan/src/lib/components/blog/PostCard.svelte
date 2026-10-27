@@ -22,7 +22,7 @@
 			src={post.cover}
 			alt={post.coveralt ?? ''}
 			loading="lazy"
-			class="aspect-2/1 w-full border-b object-cover"
+			class="aspect-2/1 w-full border-b bg-muted object-cover"
 		/>
 	{/if}
 
