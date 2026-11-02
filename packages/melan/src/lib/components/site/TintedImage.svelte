@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { ClassValue } from 'svelte/elements';
+	import { imageDimensions } from '../../site/image-dimensions.ts';
 	import { cn } from '../../utils.ts';
 
 	interface Props {
@@ -12,6 +13,8 @@
 	}
 
 	let { src, alt, tint = true, class: className }: Props = $props();
+	// With `w-auto`, the width follows from the height and this shape before the image arrives.
+	const size = $derived(imageDimensions(src));
 </script>
 
 {#if tint}
@@ -20,8 +23,8 @@
 		class="block shrink-0 bg-current mask-contain mask-center mask-no-repeat"
 		style:mask-image="url({src})"
 	>
-		<img {src} {alt} class={cn('block w-auto opacity-0', className)} />
+		<img {src} {alt} {...size} class={cn('block w-auto opacity-0', className)} />
 	</span>
 {:else}
-	<img {src} {alt} class={cn('block w-auto shrink-0', className)} />
+	<img {src} {alt} {...size} class={cn('block w-auto shrink-0', className)} />
 {/if}

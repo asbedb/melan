@@ -2,6 +2,7 @@
 	import { resolvePath } from '../../paths.ts';
 	import { Badge } from '../ui/badge/index.ts';
 	import type { PostSummary } from '../../blog/posts.ts';
+	import { imageDimensions } from '../../site/image-dimensions.ts';
 	import PostMeta from './PostMeta.svelte';
 	import Tag from './Tag.svelte';
 
@@ -21,6 +22,7 @@
 		<img
 			src={post.cover}
 			alt={post.coveralt ?? ''}
+			{...imageDimensions(post.cover)}
 			loading="lazy"
 			class="aspect-2/1 w-full border-b bg-muted object-cover"
 		/>

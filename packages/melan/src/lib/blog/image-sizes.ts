@@ -1,5 +1,5 @@
 // Loaded by vite.config.ts (through mdsvex.ts) at build time — keep imports relative.
-import { readFileSync, statSync } from 'node:fs';
+import { readdirSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { imageSize } from 'image-size';
 
@@ -43,4 +43,30 @@ export function getImageDimensions(
 	}
 	cache.set(file, { mtime, size });
 	return size;
+}
+
+/** File types collected by `collectImageDimensions`. */
+export const IMAGE_EXTENSIONS = /\.(avif|bmp|gif|ico|jpe?g|png|svg|tiff?|webp)$/i;
+
+/**
+ * Width and height of every image in `static/`, keyed by its path in that folder without the
+ * leading slash (`img/photo.jpg`). Images `image-size` can't read are left out.
+ */
+export function collectImageDimensions(
+	staticDir = path.resolve('static')
+): Record<string, ImageDimensions> {
+	let files: string[];
+	try {
+		files = readdirSync(staticDir, { recursive: true, encoding: 'utf8' });
+	} catch {
+		return {};
+	}
+	const sizes: Record<string, ImageDimensions> = {};
+	for (const file of files) {
+		if (!IMAGE_EXTENSIONS.test(file)) continue;
+		const key = file.split(path.sep).join('/');
+		const size = getImageDimensions(`/${key}`, staticDir);
+		if (size) sizes[key] = size;
+	}
+	return sizes;
 }
